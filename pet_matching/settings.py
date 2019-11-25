@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'matching',
     'accounts.apps.AccountsConfig',
+    'matching.apps.MatchingConfig',
+    'django_filters',
 ]
 
 AUTH_USER_MODEL = 'accounts.User'

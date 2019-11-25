@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html>
+    <body>
+        <h1>반짝</h1>
+        등록된 모든 반려동물들 보는 페이지
+
+        {% block content %}
+        <form action="" method="get" >
+            {{ filter.form.as_p }}
+                <input type="submit" name="search" value="search"/>
+        </form>
+        {% for pet in filter.qs %}
+        {{ pet.name }} <br />
+        {% endfor %}
+        
+        {% endblock %}
+    </body>
+</html>
+        
