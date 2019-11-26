@@ -7,3 +7,6 @@ class User(AbstractUser):
     birth_date = models.DateField('생년월일')
     name = models.CharField('이름', max_length=15)
     address = models.CharField('주소', max_length=20)
+
+    def __str__(self):
+        return self.name
