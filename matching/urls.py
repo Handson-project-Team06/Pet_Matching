@@ -1,8 +1,10 @@
 from django.contrib import admin
 from django.urls import path
-import matching.views
+from .views import *
 
-app_name="matching"
+
+app_name = 'matching'
+
 urlpatterns = [
-   path('', matching.views.home, name='home'),
+   path('home/', home, name='home'),
 ]
