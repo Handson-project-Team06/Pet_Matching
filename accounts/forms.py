@@ -29,7 +29,7 @@ class UserCreationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ("username", 'phone_number', 'birth_date', 'email', 'name')
+        fields = ("username", 'phone_number', 'birth_date', 'email', 'name', 'address')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
