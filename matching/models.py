@@ -9,6 +9,7 @@ GENDER_CHOICES =(
     )
 
 class Pet(models.Model):
+    owner = models.ForeignKey('accounts.User', on_delete=models.CASCADE)
     objects = models.Manager()
     name = models.CharField(max_length=30)
     age = models.IntegerField(default=0)
@@ -16,7 +17,7 @@ class Pet(models.Model):
     breed = models.CharField(max_length=50)
     pic = models.ImageField(blank=False)
     gender = models.CharField(("Gender"), max_length=80, choices=GENDER_CHOICES, null=True)
-    owner = models.ForeignKey('accounts.User', on_delete=models.CASCADE)
+
 
     def __str__(self):
         return self.name
