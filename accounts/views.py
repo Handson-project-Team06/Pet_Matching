@@ -14,7 +14,7 @@ class HomeView(generic.TemplateView):
 class SignUpView(generic.CreateView):
     form_class = UserCreationForm
     template_name = 'accounts/sign_up.html'
-    # success_url = reverse_lazy('accounts:sign_in')
+    #success_url = reverse_lazy('accounts:sign_in')
 
     def post(self, request, *args, **kwargs):
         return super(SignUpView, self).post(request, *args, **kwargs)
