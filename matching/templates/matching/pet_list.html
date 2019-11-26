@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+    <body>
+    <h1>반짝</h1><a href="{% url 'matching:my_pet_list' %}">나의 동물들보기</a>
+        등록된 모든 반려동물들 보는 페이지
+
+        {% block content %}
+        <form method="get" >
+            {{ filter.form.as_p }}
+                <input type="submit" name="search" value="search"/>
+        </form>
+        <div>
+        <h1>남의 동물들</h1>
+        {% for object in object_list %}
+            <ul>
+                <li>
+                    {{ object.name }}
+                </li>
+                <li>
+                    {{ object.age }}
+                </li>
+                <li>
+                    {{ object.weight }}
+                </li>
+                <li>
+                    {{ object.breed }}
+                </li>
+                <li>
+                    {{ object.get_gender_display }}
+                </li>
+                <li>
+                    <img alt="사진" src="{{ object.picture.url }}" style="width: 100px">
+                </li>
+            </ul>
+        {% empty %}
+            <h>교미할 동물이 없음 등록해주셈!!</h>
+        {% endfor %}
+    </div>
+
+        {% endblock %}
+    </body>
+</html>
