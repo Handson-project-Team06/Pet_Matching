@@ -1,0 +1,16 @@
+{% block content %}
+<div>
+    <form method="post">
+        {% csrf_token %}
+        <p>
+            <label for="id_username"></label>
+            <input type="text" name="username" autofocus required id="id_username" placeholder="아이디">
+        </p>
+        <p>
+            <label for="id_password"></label>
+            <input type="password" name="password" required id="id_password" placeholder="비밀번호">
+        </p>
+        <button type="submit">로그인</button>
+    </form>
+</div>
+{% endblock %}

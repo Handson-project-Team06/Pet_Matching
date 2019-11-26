@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <p>임시 홈뷰</p>
+</head>
+<body>
+<div>
+    <div class>
+        <button id="sign-in-btn" onclick="window.location = '{% url 'account:sign_in' %}';">로그인</button>
+        <button id="sign-up-btn" onclick="window.location = '{% url 'account:sign_up' %}';">회원가입</button>
+    </div>
+</div>
+</body>
+</html>
