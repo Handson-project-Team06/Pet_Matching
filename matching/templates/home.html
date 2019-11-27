@@ -10,7 +10,18 @@
                 <input type="submit" name="search" value="search"/>
         </form>
         {% for pet in filter.qs %}
-        {{ pet.name }} <br />
+        {{ pet.name }} 
+        {{ pet.lat }}
+        {{ pet.longi }}
+        <br />
+        {% endfor %}
+        
+        {% for pet in nearby_locations %}
+        {{ pet.name }} 
+        {{ pet.lat }}
+        {{ pet.longi }}
+        {{ pet.distance }}
+        <br />
         {% endfor %}
         
         {% endblock %}
