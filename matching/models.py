@@ -5,7 +5,7 @@ GENDER_CHOICES =(
         ('male','Male'),
         ('female','Female'),
     )
-class Pets(models.Model):
+class Pet(models.Model):
     objects=models.Manager()
     name=models.CharField(max_length=30)
     age=models.IntegerField(default=0)
