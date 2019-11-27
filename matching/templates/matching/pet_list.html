@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html>
     <body>
+    <h1><a href="{% url 'user_messages:List' %}">메시지함</a></h1>
     <h1>반짝</h1><a href="{% url 'matching:my_pet_list' %}">나의 동물들보기</a>
         등록된 모든 반려동물들 보는 페이지
 
@@ -30,6 +31,9 @@
                 </li>
                 <li>
                     <img alt="사진" src="{{ object.picture.url }}" style="width: 100px">
+                </li>
+                <li>
+                    <a href="{% url 'user_messages:create' user_id=object.owner_id pet_id=object.id %}">메시지보내기</a>
                 </li>
             </ul>
         {% empty %}
