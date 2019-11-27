@@ -15,4 +15,5 @@ class UserMessageForm(models.ModelForm):
     def save(self, commit=True):
         self.instance.receiver = self.receiver
         self.instance.sender = self.sender
+        self.instance.pet = self.pet
         return super(UserMessageForm, self).save(commit)
