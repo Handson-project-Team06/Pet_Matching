@@ -1,4 +1,4 @@
-from matching.models import Pet
+from matching.models import Pet, GENDER_CHOICES
 import django_filters
 from django_filters import FilterSet, CharFilter, ChoiceFilter
 from django.contrib.auth.models import Group

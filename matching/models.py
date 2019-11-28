@@ -1,15 +1,13 @@
 from django.db import models
 from django.urls import reverse_lazy
 
-
 # Create your models here.
-
-class Pet(models.Model):
-    MALE, FEMALE = 0, 1
-    GENDER_CHOICES = (
+MALE, FEMALE = 0, 1
+GENDER_CHOICES = (
         (MALE, 'Male'),
         (FEMALE, 'Female'),
     )
+class Pet(models.Model):
     owner = models.ForeignKey('accounts.User', on_delete=models.CASCADE)
     name = models.CharField(max_length=30)
     age = models.IntegerField(default=0)
