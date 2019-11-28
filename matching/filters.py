@@ -10,6 +10,22 @@ from django.dispatch import receiver
 
 from math import radians, cos, sin, asin, sqrt
 
+import urllib.request 
+import json
+def getplace(lat, lon):
+    key = "AIzaSyBlu5QpKaxho5vC2yN871kC0vEgtcMqNfQ"
+    url = "https://maps.googleapis.com/maps/api/geocode/json?"
+    url += "latlng=%s,%s&sensor=false&key=%s" % (lat, lon, key)
+    v = urllib.request.urlopen(url).read()
+    j = json.loads(v)
+    components = j['results'][0]['address_components']
+    country = town = None
+    for c in components:
+        if "country" in c['types']:
+            country = c['long_name']
+        if "postal_town" in c['types']:
+            town = c['long_name']
+    return town, country
 
 
 class PetFilter(django_filters.FilterSet):
@@ -25,7 +41,7 @@ def get_locations_nearby_coords(latitude, longitude, max_distance=None):
     which distance is less than max_distance given in kilometers
     """
     # Great circle distance formula
-    gcd_formula = "6371 * acos(cos(radians(%s)) * cos(radians(lat)) * cos(radians(longi) - radians(%s)) + sin(radians(%s)) * sin(radians(lat)))"
+    gcd_formula = "6371 * acos(cos(radians(%s)) * cos(radians(lat)) * cos(radians(lon) - radians(%s)) + sin(radians(%s)) * sin(radians(lat)))"
     distance_raw_sql = RawSQL(
         gcd_formula,
         (latitude, longitude, latitude)
