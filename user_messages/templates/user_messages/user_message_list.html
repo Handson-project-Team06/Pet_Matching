@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% for object in object_list %}
+        <div>
+            {{ object.sender }}:{{ object.content }}, {{ object.created }}
+        </div>
+        <div>
+            <br>펫 이름:
+            {{ object.pet.name }}
+        </div>
+    {% endfor %}
+{% endblock %}

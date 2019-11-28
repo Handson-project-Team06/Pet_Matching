@@ -25,7 +25,7 @@ SECRET_KEY = 'u%+=we_i!4_mulwsd1n--kg^b=^52s+)r0c*rfm6ley)!wbk4+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ec2-13-209-48-5.ap-northeast-2.compute.amazonaws.com', 'localhost', '127.0.0.1' ]
 
 
 # Application definition
@@ -37,9 +37,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'matching.apps.MatchingConfig',
     'django_filters',
+    'accounts.apps.AccountsConfig',
+    'matching',
+    'user_messages',
 ]
+
+AUTH_USER_MODEL = 'accounts.User'
+
+LOGIN_REDIRECT_URL ='/'
+LOGOUT_REDIRECT_URL = '/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -56,7 +63,7 @@ ROOT_URLCONF = 'pet_matching.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -107,7 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
@@ -120,3 +127,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <a href="{% url 'matching:home' %}">홈으로</a>
+    <a href="{% url 'matching:pet_create' %}">애완동물 등록하기</a>
+    <div>
+        <h1>내 동물들</h1>
+        {% for object in object_list %}
+            <ul>
+                <li>
+                    {{ object.name }}
+                </li>
+                <li>
+                    {{ object.age }}
+                </li>
+                <li>
+                    {{ object.weight }}
+                </li>
+                <li>
+                    {{ object.breed }}
+                </li>
+                <li>
+                    {{ object.get_gender_display }}
+                </li>
+                <li>
+                    {{ object.lat }}
+                    {{ object.lon }}
+                    <img alt="사진" src="{{ object.picture.url }}" style="width: 100px">
+                </li>
+                <li>
+                    <a href="{% url 'matching:pet_update' pk=object.id %}">펫 수정하기</a>
+                </li>
+                <li>
+                    <a href="{% url 'matching:pet_delete' pk=object.id %}">펫 삭제하기</a>
+                </li>
+            </ul>
+        {% empty %}
+            <h>내 동물이 없음 등록해주셈!!</h>
+        {% endfor %}
+    </div>
+{% endblock %}
