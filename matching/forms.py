@@ -5,7 +5,9 @@ from matching.models import Pet
 class PetCreationForm(forms.ModelForm):
     class Meta:
         model = Pet
-        fields = ('name', 'age', 'weight', 'breed', 'picture', 'gender')
+        fields = ('name', 'age', 'weight', 'breed', 'picture', 'gender'\
+            ,'address','city','country','postal_code'
+        )
 
     def __init__(self, user, *args, **kwargs):
         super(PetCreationForm, self).__init__(*args, **kwargs)

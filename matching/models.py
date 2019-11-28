@@ -17,6 +17,11 @@ class Pet(models.Model):
     breed = models.CharField(max_length=50)
     picture = models.ImageField(blank=False)
     gender = models.PositiveSmallIntegerField(choices=GENDER_CHOICES, default=MALE)
-
+    lat = models.FloatField(default=0)
+    lon = models.FloatField(default=0)
+    address = models.CharField(max_length=200, null=False, default = '')
+    city = models.CharField(max_length=100, null=True)
+    country = models.CharField(max_length=100, null=True)
+    postal_code = models.CharField(max_length=100, null=True)
     def __str__(self):
         return self.name
