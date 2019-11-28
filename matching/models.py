@@ -6,7 +6,7 @@ GENDER_CHOICES =(
     )
 class Pet(models.Model):
     lat = models.FloatField(default=0)
-    longi = models.FloatField(default=0)
+    lon = models.FloatField(default=0)
     objects=models.Manager()
     name=models.CharField(max_length=30)
     age=models.IntegerField(default=0)
