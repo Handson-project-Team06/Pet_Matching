@@ -10,6 +10,8 @@ from django.dispatch import receiver
 
 from math import radians, cos, sin, asin, sqrt
 
+
+
 class PetFilter(django_filters.FilterSet):
     breed = django_filters.CharFilter(lookup_expr='icontains')
     gender = django_filters.ChoiceFilter(choices=GENDER_CHOICES,empty_label=ugettext_lazy(u'Any'))
@@ -23,15 +25,13 @@ def get_locations_nearby_coords(latitude, longitude, max_distance=None):
     which distance is less than max_distance given in kilometers
     """
     # Great circle distance formula
-    gcd_formula = "6371 * acos(least(greatest(\
-    cos(radians(%s)) * cos(radians(lat)) \
-    * cos(radians(longi) - radians(%s)) + \
-    sin(radians(%s)) * sin(radians(lat)) \
-    , -1), 1))"
-
-    #gcd_formula ="6367 * 2 * asin(sqrt(sin((lat - %s )/2)**2 +cos(%s) * cos(lat) * sin((longi - %s )/2)**2 ))"
-    distance_raw_sql = RawSQL(gcd_formula,(latitude, latitude, longitude))
-    qs = Pet.objects.all().annotate(distance=distance_raw_sql)\
+    gcd_formula = "6371 * acos(cos(radians(%s)) * cos(radians(lat)) * cos(radians(longi) - radians(%s)) + sin(radians(%s)) * sin(radians(lat)))"
+    distance_raw_sql = RawSQL(
+        gcd_formula,
+        (latitude, longitude, latitude)
+    )
+    qs = Pet.objects.all() \
+    .annotate(distance=distance_raw_sql) \
     .order_by('distance')
     if max_distance is not None:
         qs = qs.filter(distance__lt=max_distance)
