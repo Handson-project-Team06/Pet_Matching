@@ -8,22 +8,22 @@
         {% for object in object_list %}
             <ul>
                 <li>
-                    {{ object.name }}
+                    이름 : {{ object.name }}
                 </li>
                 <li>
-                    {{ object.age }}
+                    나이 : {{ object.age }}
                 </li>
                 <li>
-                    {{ object.weight }}
+                    몸무게 : {{ object.weight }}
                 </li>
                 <li>
-                    {{ object.breed }}
+                    종 : {{ object.breed }}
                 </li>
                 <li>
-                    {{ object.get_gender_display }}
+                    성별 : {{ object.get_gender_display }}
                 </li>
                 <li>
-                    <img alt="사진" src="{{ object.picture.url }}" style="width: 100px">
+                    사진 : <img alt="사진" src="{{ object.picture.url }}" style="width: 100px">
                 </li>
                 <li>
                     <a href="{% url 'matching:pet_update' pk=object.id %}">펫 수정하기</a>
