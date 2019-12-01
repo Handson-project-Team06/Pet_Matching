@@ -4,11 +4,15 @@
 
     {% for object in object_list %}
         <div>
-            {{ object.sender }}:{{ object.content }}, {{ object.created }}
+            <p>[ 보낸시각 :{{ object.created }} ]</p>
+            <p>[ 보낸사람 :{{ object.sender }} ]</p>
+            <p>[ 내용 : {{ object.content }} ]</p>
         </div>
         <div>
-            <br>펫 이름:
-            {{ object.pet.name }}
+            <br>보낸 사람 펫: {{ object.pet.name }}
         </div>
+
+    {% empty %}
+            <h>받은 메시지가 없어요.</h>
     {% endfor %}
 {% endblock %}
