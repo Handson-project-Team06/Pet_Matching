@@ -34,11 +34,10 @@ class PetCreateView(generic.CreateView):
     success_url = reverse_lazy('matching:my_pet_list')
 
     def get_form_kwargs(self):
+        
         kwargs = super(PetCreateView, self).get_form_kwargs()
+        kwargs['lat'], kwargs['lon'] = self.new_pet()
         kwargs['user'] = self.request.user
-        self.new_pet()
-        #form = PetCreationForm(self.request.POST)
-        #form.save(commit=True)
         return kwargs
 
     def geocode(self, location):
@@ -55,18 +54,11 @@ class PetCreateView(generic.CreateView):
             return ','
 
     def new_pet(self):
-        #pet=get_object_or_404(Pet,pk=self.kwargs['pk'])
-        print(self.kwargs)
         address = self.request.POST.get('address')
-        city = self.request.POST.get('city')
-        country = self.request.POST.get('country')
-        print(address,city,country)
-        location = "%s, %s, %s" % (address, city, country)
+        location = "%s" % (address)
         latlng = self.geocode(location)
         latlng = latlng.split(',')
-        self.lat = latlng[0]
-        self.lon = latlng[1]
-        return self
+        return latlng[0],latlng[1]
 
 # 내 반려동물 수정
 class PetUpdateView(generic.UpdateView,):
@@ -77,8 +69,8 @@ class PetUpdateView(generic.UpdateView,):
 
     def get_form_kwargs(self):
         kwargs = super(PetUpdateView, self).get_form_kwargs()
+        kwargs['lat'], kwargs['lon'] = self.edit_pet()
         kwargs['user'] = self.request.user
-        self.edit_pet()
         return kwargs
 
     def geocode(self, location):
@@ -96,13 +88,10 @@ class PetUpdateView(generic.UpdateView,):
 
     def edit_pet(self):
         pet=get_object_or_404(Pet,pk=self.kwargs['pk'])
-        location = "%s, %s, %s" % (pet.address, pet.city, pet.country)
+        location = "%s" % (pet.address)
         latlng = self.geocode(location)
         latlng = latlng.split(',')
-        if pet.lat != latlng[0] :
-            pet.lat = latlng[0]
-            pet.lon = latlng[1]
-        pet.save()
+        return latlng[0],latlng[1]
     
     
 
