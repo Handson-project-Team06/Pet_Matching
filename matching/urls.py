@@ -11,5 +11,4 @@ urlpatterns = [
    path('home/my_pet_list/pet_create/', PetCreateView.as_view(), name='pet_create'),
    path('home/my_pet_list/<int:pk>/', PetUpdateView.as_view(), name='pet_update'),
    path('home/my_pet_list/<int:pk>/delete/', PetDeleteView.as_view(), name='pet_delete'),
-
 ]

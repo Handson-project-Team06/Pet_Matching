@@ -11,7 +11,7 @@ from django.urls import reverse_lazy
 def home(request):
     pet_list = Pet.objects.all()
     pet_filter = PetFilter(request.GET,queryset=pet_list)
-    return render(request,'matching/home.html',{'filter':pet_filter})
+    return render(request, 'matching/home.html', {'filter':pet_filter})
 
 
 # 반려동물 리스트
