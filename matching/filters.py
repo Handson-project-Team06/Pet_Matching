@@ -1,27 +1,24 @@
-from matching.models import Pet, GENDER_CHOICES
+from matching.models import Pet, GENDER_CHOICES, ANIMAL_CHOICES
 import django_filters
 from django_filters import FilterSet, CharFilter, ChoiceFilter
 from django.contrib.auth.models import Group
 from django.utils.translation import ugettext_lazy
 from django.db.models.expressions import RawSQL
-
 import math
 from django.db.backends.signals import connection_created
 from django.dispatch import receiver
-
 from math import radians, cos, sin, asin, sqrt
-
 import urllib.request,urllib.parse
 import json
 
-from django import forms
 
 class PetFilter(FilterSet):
     breed = django_filters.CharFilter(lookup_expr='icontains')
     gender = django_filters.ChoiceFilter(choices=GENDER_CHOICES,empty_label=ugettext_lazy(u'Any'))
+    animal = django_filters.ChoiceFilter(choices=ANIMAL_CHOICES,empty_label=ugettext_lazy(u'Any'))
     class Meta:
         model = Pet
-        fields = ['breed', 'gender']
+        fields = ['breed', 'gender','animal']
 
 
 

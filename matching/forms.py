@@ -6,7 +6,7 @@ class PetCreationForm(forms.ModelForm):
     class Meta:
         model = Pet
         fields = ('name', 'age', 'weight', 'breed', 'picture', 'gender'\
-            ,'address'
+            ,'animal','address'
         )
 
     def __init__(self, user, lat, lon, *args, **kwargs):

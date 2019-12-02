@@ -10,14 +10,16 @@
     </form>
 
     <form method="get" action="">
-            내 주변 <input name="search" placeholder="" type="number" >km 까지<br /> 
+            내 주변 <input name="distance_search" placeholder="" type="number" >km 까지<br /> 
             <span> <button type="submit"> search </button>
     </form>
     {% if flag %}
         {% if dis_filter %}
-        <br />거리필터링중<br />
+        <br />pets nearby {{flag}} km<br />
         {% for pet in dis_filter %}
         <br /> 
+            {% if pet.owner == owner%}
+            {% else %}
             {{ pet.name }} 
             {{ pet.get_gender_display }}
             {{ pet.lat }}
@@ -25,7 +27,7 @@
             {{ pet.address }}
             {{ pet.distance }}
             <img alt="사진" src="{{ pet.picture.url }}" style="width: 100px">
-    
+            {% endif %}
         {% endfor %}
         {% else %}
         <br />no pets nearby {{ flag }} km
@@ -34,6 +36,8 @@
     <br /> 
     {% for pet in filter.qs %}
     <br /> 
+        {% if pet.owner == owner%}
+        {% else %}
         {{ pet.name }} 
         {{ pet.address}}
         {{ pet.get_gender_display }}
@@ -41,6 +45,7 @@
         {{ pet.lon }}
         {{ pet.address }}
         <img alt="사진" src="{{ pet.picture.url }}" style="width: 100px">
+        {% endif %}
     {% endfor %}
     {% endif %}
 {% endblock %}
