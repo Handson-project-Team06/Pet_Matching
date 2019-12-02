@@ -1,20 +1,25 @@
 from django.shortcuts import render,get_object_or_404
 from .models import Pet
-from .filters import PetFilter
+from .filters import PetFilter,get_locations_nearby_coords,getplace
 from django.views import generic
 from matching.forms import PetCreationForm
 from django.urls import reverse_lazy
 import urllib.request,urllib.parse
 import simplejson as json
+from accounts.models import User
 # Create your views here.
 
 def home(request):
     pet_list = Pet.objects.all()
     pet_filter = PetFilter(request.GET,queryset=pet_list)
-    nearby_locations , distance = get_locations_nearby_coords(2,5, 7000)
-    town, country = getplace(2.0, 3)
-    return render(request,'home.html',{'filter':pet_filter, 'nearby_locations':nearby_locations, 'distance':distance, 'town' : town, 'country' : country})
-
+    owner=request.user
+    if 'search' in request.GET:
+        max_distance = int(request.GET['search'])
+        print(owner.address)
+        dis_filter , distance = get_locations_nearby_coords(owner.address, max_distance)
+        flag=int(request.GET['search'])
+        return render(request,'matching/home.html',{'filter':pet_filter,'dis_filter':dis_filter, 'distance':distance,'owner':owner,'flag':flag})
+    return render(request,'matching/home.html',{'filter':pet_filter,'owner':owner})
 
 # 반려동물 리스트
 class PetListView(generic.ListView):
@@ -25,7 +30,6 @@ class PetListView(generic.ListView):
         queryset = super(PetListView, self).get_queryset()
         return queryset.exclude(owner=self.request.user)
 
-
 # 내 반려동물 등록
 class PetCreateView(generic.CreateView):
     model = Pet
@@ -34,7 +38,6 @@ class PetCreateView(generic.CreateView):
     success_url = reverse_lazy('matching:my_pet_list')
 
     def get_form_kwargs(self):
-        
         kwargs = super(PetCreateView, self).get_form_kwargs()
         kwargs['lat'], kwargs['lon'] = self.new_pet()
         kwargs['user'] = self.request.user

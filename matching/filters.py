@@ -11,8 +11,20 @@ from django.dispatch import receiver
 
 from math import radians, cos, sin, asin, sqrt
 
-import urllib.request 
+import urllib.request,urllib.parse
 import json
+
+from django import forms
+
+class PetFilter(FilterSet):
+    breed = django_filters.CharFilter(lookup_expr='icontains')
+    gender = django_filters.ChoiceFilter(choices=GENDER_CHOICES,empty_label=ugettext_lazy(u'Any'))
+    class Meta:
+        model = Pet
+        fields = ['breed', 'gender']
+
+
+
 def getplace(lat, lon):
     key = "AIzaSyBlu5QpKaxho5vC2yN871kC0vEgtcMqNfQ"
     url = "https://maps.googleapis.com/maps/api/geocode/json?"
@@ -28,15 +40,11 @@ def getplace(lat, lon):
             town = c['long_name']
     return town, country
 
-
-    breed = django_filters.CharFilter(lookup_expr='icontains')
-    gender = django_filters.ChoiceFilter(choices=GENDER_CHOICES,empty_label=ugettext_lazy(u'Any'))
-class PetFilter(FilterSet):
-    class Meta:
-        model = Pet
-        fields = ['breed', 'gender', ]
-
-def get_locations_nearby_coords(latitude, longitude, max_distance=None):
+#def get_locations_nearby_coords(latitude, longitude, max_distance=None):
+def get_locations_nearby_coords(location,max_distance = None) : 
+    latlng = geocode(str(location))
+    latlng = latlng.split(',')
+    latitude, longitude =float(latlng[0]) , float(latlng[1])
     """
     Return objects sorted by distance to specified coordinates
     which distance is less than max_distance given in kilometers
@@ -66,3 +74,17 @@ def extend_sqlite(connection=None, **kwargs):
         cf('sin', 1, math.sin)
         cf('least', 2, max)
         cf('greatest', 2, min)
+
+
+def geocode(location):
+        key = "AIzaSyBlu5QpKaxho5vC2yN871kC0vEgtcMqNfQ"
+        output = "json"
+        location = urllib.parse.quote(location)
+        request = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=%s&language=ko&inputtype=textquery&fields=geometry&key=%s" % (location, key)
+        data = urllib.request.urlopen(request).read()
+        dlist = json.loads(data.decode('utf-8'))
+        if dlist["status"] == "OK":
+            return "%s,%s" % (dlist['candidates'][0]['geometry']['location']['lat'],\
+                 dlist['candidates'][0]['geometry']['location']['lng'])
+        else:
+            return ','

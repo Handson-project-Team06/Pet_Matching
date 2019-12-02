@@ -8,10 +8,40 @@
         {{ filter.form.as_p }}
         <input type="submit" name="search" value="search"/>
     </form>
-    {% for pet in filter.qs %}
-        {{ pet.name }} <br />
-    {% endfor %}
 
+    <form method="get" action="">
+            내 주변 <input name="search" placeholder="" type="number" >km 까지<br /> 
+            <span> <button type="submit"> search </button>
+    </form>
+    {% if flag %}
+        {% if dis_filter %}
+        <br />거리필터링중<br />
+        {% for pet in dis_filter %}
+        <br /> 
+            {{ pet.name }} 
+            {{ pet.get_gender_display }}
+            {{ pet.lat }}
+            {{ pet.lon }}
+            {{ pet.address }}
+            {{ pet.distance }}
+    
+        {% endfor %}
+        {% else %}
+        <br />no pets nearby {{ flag }} km
+        {% endif %}
+    {% else %}
+    <br /> 
+    {% for pet in filter.qs %}
+    <br /> 
+        {{ pet.name }} 
+        {{ pet.address}}
+        {{ pet.get_gender_display }}
+        {{ pet.lat }}
+        {{ pet.lon }}
+        {{ pet.address }}
+
+    {% endfor %}
+    {% endif %}
 {% endblock %}
 
         
