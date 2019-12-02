@@ -15,7 +15,6 @@ def home(request):
     owner=request.user
     if 'search' in request.GET:
         max_distance = int(request.GET['search'])
-        print(owner.address)
         dis_filter , distance = get_locations_nearby_coords(owner.address, max_distance)
         flag=int(request.GET['search'])
         return render(request,'matching/home.html',{'filter':pet_filter,'dis_filter':dis_filter, 'distance':distance,'owner':owner,'flag':flag})

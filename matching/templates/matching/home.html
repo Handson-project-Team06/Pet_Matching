@@ -24,6 +24,7 @@
             {{ pet.lon }}
             {{ pet.address }}
             {{ pet.distance }}
+            <img alt="사진" src="{{ pet.picture.url }}" style="width: 100px">
     
         {% endfor %}
         {% else %}
@@ -39,7 +40,7 @@
         {{ pet.lat }}
         {{ pet.lon }}
         {{ pet.address }}
-
+        <img alt="사진" src="{{ pet.picture.url }}" style="width: 100px">
     {% endfor %}
     {% endif %}
 {% endblock %}
