@@ -1,31 +1,20 @@
 {% extends 'base.html' %}
 
-{% block title %}
-반짝-홈페이지
-{% endblock %}
 
-
-{% block extra_script %}
-    <style>
-        button{
-            border: none;
-            margin-top: 30px;
-            padding: 5px 25px;
-            border-radius: 33px;
-            box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-            background-color: #ffffb5;
-            color: #3800a8;
-            font-weight: bold;
-            float:right;
-            margin-right: 50px;
-        }
-    </style>
-{% endblock %}
-
-
+{% load staticfiles %}
+<!doctype html>
 {% block content %}
-    <div>
+<html lang="ko">
+<head>
+    <p>임시 홈뷰</p>
+</head>
+<body>
+<div>
+    <div class>
         <button id="sign-in-btn" onclick="window.location = '{% url 'account:sign_in' %}';">로그인</button>
         <button id="sign-up-btn" onclick="window.location = '{% url 'account:before_sign_up' %}';">회원가입</button>
     </div>
+</div>
+</body>
 {% endblock %}
+</html>
