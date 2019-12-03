@@ -17,17 +17,17 @@
   
   <!-- ** Plugins Needed for the Project ** -->
   <!-- Bootstrap -->
-  <link rel="stylesheet" href="../static/plugins/bootstrap/bootstrap.min.css">
-  <link rel="stylesheet" href="../static/plugins/themify/css/themify-icons.css">
-  <link rel="stylesheet" href="../static/plugins/counto/animate.css">
-  <link rel="stylesheet" href="../static/plugins/aos/aos.css">
-  <link rel="stylesheet" href="../static/plugins/owl-carousel/owl.carousel.min.css">
-  <link rel="stylesheet" href="../static/plugins/owl-carousel/owl.theme.default.min.css">
-  <link rel="stylesheet" href="../static/plugins/magnific-popup/magnific-popup.css">
-  <link rel="stylesheet" href="../static/plugins/animated-text/animated-text.css">
+  <link rel="stylesheet" href="{% static '/plugins/bootstrap/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static '/plugins/themify/css/themify-icons.css' %}">
+  <link rel="stylesheet" href="{% static '/plugins/counto/animate.css' %}">
+  <link rel="stylesheet" href="{% static '/plugins/aos/aos.css' %}">
+  <link rel="stylesheet" href="{% static '/plugins/owl-carousel/owl.carousel.min.css' %}">
+  <link rel="stylesheet" href="{% static '/plugins/owl-carousel/owl.theme.default.min.css' %}">
+  <link rel="stylesheet" href="{% static '/plugins/magnific-popup/magnific-popup.css' %}">
+  <link rel="stylesheet" href="{% static '/plugins/animated-text/animated-text.css' %}">
 
   <!-- Main Stylesheet -->
-  <link href="../static/css/style.css" rel="stylesheet">
+  <link href="{% static '/css/style.css'%}" rel="stylesheet">
 
 </head>
 
@@ -35,11 +35,11 @@
   
 <!-- Navigation Start -->
 <!-- Header Start --> 
-
+{% block header %}
 <nav class="navbar navbar-expand-lg  main-nav " id="navbar">
 	<div class="container">
-	  <a class="navbar-brand" href="../static/index.html">
-	  	<img src="../static/images/logo.png" alt="" class="img-fluid">
+	  <a class="navbar-brand" href="{% static '/index.html' %}">
+	  	<img src="{% static '/images/logo.png' %}" alt="" class="img-fluid">
 	  </a>
 
 	  <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,56 +48,39 @@
   
 		  <div class="collapse navbar-collapse" id="navbarsExample09">
 			<ul class="navbar-nav ml-auto">
-			  <li class="nav-item  active"><a class="nav-link" href="../static/index.html">Home</a></li>
+			  <li class="nav-item  active"><a class="nav-link" href="{% url 'matching:home' %}">Home</a></li>
 
 			  <li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
 					<ul class="dropdown-menu" aria-labelledby="dropdown01">
-						<li><a class="dropdown-item" href="../static/about.html">About Me</a></li>
-						<li><a class="dropdown-item" href="../static/about-us.html">About Us</a></li>
+						<li><a class="dropdown-item" href="{% static '/about.html' %}">About Me</a></li>
+						<li><a class="dropdown-item" href="{% static '/about-us.html' %}">About Us</a></li>
 					</ul>
 			  </li>
-
-			  <li class="nav-item dropdown active">
-					<a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Portfolio</a>
-					<ul class="dropdown-menu" aria-labelledby="dropdown02">
-						<li><a class="dropdown-item" href="../static/portfolio-1.html">Portfolio Masonary</a></li>
-						<li><a class="dropdown-item" href="../static/portfolio-2.html">Portfolio lightbox</a></li>
-						<li><a class="dropdown-item" href="../static/portfolio-3.html">Portfolio 2 column</a></li>
-						<li><a class="dropdown-item" href="../static/portfolio-single.html">Portfolio Details</a></li>
-					</ul>
-			  </li>
-			   <li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Blog</a>
-					<ul class="dropdown-menu" aria-labelledby="dropdown05">
-						<li><a class="dropdown-item" href="../static/blog-grid.html">Blog Grid</a></li>
-						<li><a class="dropdown-item" href="../static/blog-sidebar.html">Blog with Sidebar</a></li>
-
-						<li><a class="dropdown-item" href="../static/blog-single.html">Blog Single</a></li>
-					</ul>
-			  </li>
-			   <li class="nav-item"><a class="nav-link" href="../static/contact.html">Contact</a></li>
+			   
+			   <li class="nav-item"><a class="nav-link" href="{% url 'matching:my_pet_list' %}">내 동물들</a></li>
+			   <li class="nav-item"><a class="nav-link" href="{% url 'user_messages:List' %}">메세지함</a></li>
+			   <li class="nav-item"><a class="nav-link" href="{% url 'accounts:home' %}">로그아웃</a></li>
 			</ul>
 		</div>
 	</div>
 </nav>
-
+{% endblock %}
 <!-- Header Close --> 
 
 
-<!-- Navigation ENd -->
-
+{% block banner %}
 <!-- Banner Start -->
 <section class="section banner">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-10">
 				 <h2 class="cd-headline clip is-full-width mb-4 ">
-				 	I provide <br>
+				 	반짝 <br>
                     <span class="cd-words-wrapper text-color">
-                        <b class="is-visible">반짝</b>
-                        <b>Creative Ideas.</b>
-                        <b>Professional Content.</b>
+                        <b class="is-visible">애완다</b>
+                        <b>친구찾기</b>
+                        <b>반짝</b>
                     </span>
                 </h2>
                 <p>I must explain to you how all this mistaken idea of denouncing pleasure and praising pain <br>was born and I will give you a complete account of the system</p>
@@ -107,191 +90,11 @@
 </section>
 
 <!-- Banner End -->
+{% endblock %}
+{% block content %}
 
-<!-- POrtfolio start -->
-<section class="portfolio ">
-	<div class="container">
-		<div class="row mb-5">
-	      	<div class="col-10">
-		        <div class="btn-group btn-group-toggle " data-toggle="buttons">
-		          <label class="btn active ">
-		            <input type="radio" name="shuffle-filter" value="all" checked="checked" />All Projects
-		          </label>
-		          <label class="btn">
-		            <input type="radio" name="shuffle-filter" value="design" />UI/UX Design
-		          </label>
-		          <label class="btn">
-		            <input type="radio" name="shuffle-filter" value="branding" />branding
-		          </label>
-		          <label class="btn">
-		            <input type="radio" name="shuffle-filter" value="illustration" />Web Development
-		          </label>
-		           <label class="btn">
-		            <input type="radio" name="shuffle-filter" value="photo" />Photography
-		          </label>
-		        </div>
-	      	</div>
-    	</div>	
-
-		<div class="row shuffle-wrapper portfolio-gallery">
-	      <div class="col-lg-4 col-6 mb-4 shuffle-item"  data-groups="[&quot;design&quot;,&quot;illustration&quot;]">
-		      	<div class="position-relative inner-box">
-		          <div class="image position-relative ">
-	               <img src="../static/images/portfolio/1.jpg" alt="portfolio-image" class="img-fluid w-100 d-block">
-	                <div class="overlay-box">
-	                  <div class="overlay-inner">
-	                    <a class="overlay-content" href="../static/portfolio-single.html">
-	                      <h5 class="mb-0">Painting</h5>
-	                      <p>Design</p>
-	                    </a>
-	                  </div>
-	                </div> 
-	            </div>
-		      </div>
-	      </div>
-
-	      <div class="col-lg-4 col-6 mb-4 shuffle-item" data-groups="[&quot;branding&quot;]">
-	        <div class="position-relative inner-box" >
-	            <div class="image position-relative ">
-	               <img src="../static/images/portfolio/4.jpg" alt="portfolio-image" class="img-fluid w-100 d-block">
-	                <div class="overlay-box">
-	                  <div class="overlay-inner">
-		                    <a class="overlay-content" href="../static/portfolio-single.html">
-		                      <h5 class="mb-0">Web app</h5>
-		                      <p>Development</p>
-		                    </a>
-	                	</div> 
-		            </div>
-		        </div>
-		      </div>
-	      </div>
-
-	      <div class="col-lg-4 col-6 mb-4 shuffle-item" data-groups="[&quot;illustration&quot;]">
-	        <div class="position-relative inner-box">
-	            <div class="image position-relative ">
-	               <img src="../static/images/portfolio/3.jpg" alt="portfolio-image" class="img-fluid w-100 d-block">
-	                <div class="overlay-box">
-	                  <div class="overlay-inner">
-	                    <a class="overlay-content" href="../static/portfolio-single.html">
-	                      <h5 class="mb-0">Business </h5>
-	                      <p>marketing</p>
-	                    </a>
-	                  </div>
-	                </div> 
-	            </div>
-	        </div>
-	      </div>
-
-	      <div class="col-lg-4 col-6 mb-4 shuffle-item" data-groups="[&quot;design&quot;,&quot;branding&quot;]">
-	        <div class="position-relative inner-box">
-	            <div class="image position-relative ">
-	               <img src="../static/images/portfolio/5.jpg" alt="portfolio-image" class="img-fluid w-100 d-block">
-	                <div class="overlay-box">
-	                  <div class="overlay-inner">
-	                    <a class="overlay-content" href="../static/portfolio-single.html">
-	                      <h5 class="mb-0">Portfolio</h5>
-	                      <p>Design</p>
-	                    </a>
-	                  </div>
-	                </div> 
-	            </div>
-	        </div>
-	      </div>
-
-	      <div class="col-lg-4 col-6 mb-4 shuffle-item" data-groups="[&quot;illustration&quot;]">
-	        <div class="position-relative inner-box">
-	            <div class="image position-relative ">
-	               <img src="../static/images/portfolio/6.jpg" alt="portfolio-image" class="img-fluid w-100 d-block">
-	                <div class="overlay-box">
-	                  <div class="overlay-inner">
-	                    <a class="overlay-content" href="../static/portfolio-single.html">
-	                       <h5 class="mb-0 ">Modern web</h5>
-	                      	<p>Seo</p>
-	                    </a>
-	                  </div>
-	                </div> 
-	            </div>
-	        </div>
-	      </div>
-
-	      <div class="col-lg-4 col-6 mb-4 shuffle-item" data-groups="[&quot;design&quot;,&quot;photo&quot;]">
-	        <div class="position-relative inner-box">
-	            <div class="image position-relative ">
-	               <img src="../static/images/portfolio/7.jpg" alt="portfolio-image" class="img-fluid w-100 d-block">
-	                <div class="overlay-box">
-	                  <div class="overlay-inner">
-	                    <a class="overlay-content" href="../static/portfolio-single.html">
-	                       <h5 class="mb-0">Agency web</h5>
-	                      	<p>Design</p>
-	                    </a>
-	                  </div>
-	                </div> 
-	            </div>
-	        </div>
-	      </div>
-	    </div>
-	</div>
-</section>
-<!-- Portfolio End -->
-
-<!-- Service start -->
-<section class="section service-home border-top">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-6">
-				<h2 class="mb-2 ">Core Services.</h2>
-				<p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus, totam ipsa quia hic odit a sit laboriosam voluptatem in, blanditiis.</p>
-			</div>
-		</div>
-		
-		<div class="row">
-			<div class="col-lg-4">
-				<div class="service-item mb-5" data-aos="fade-left" >
-					<i class="ti-layout"></i>
-					<h4 class="my-3">Web Development</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, earum.</p>
-				</div>
-			</div>
-			<div class="col-lg-4">
-				<div class="service-item mb-5" data-aos="fade-left"  data-aos-delay="450">
-					<i class="ti-announcement"></i>
-					<h4 class="my-3">Digital Marketing</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, earum.</p>
-				</div>
-			</div>
-			<div class="col-lg-4">
-				<div class="service-item mb-5 mb-lg-0" data-aos="fade-left"  data-aos-delay="750">
-					<i class="ti-layers"></i>
-					<h4 class="my-3">Graphics Design</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, earum.</p>
-				</div>
-			</div>
-			<div class="col-lg-4">
-				<div class="service-item" data-aos="fade-left"  data-aos-delay="750">
-					<i class="ti-anchor"></i>
-					<h4 class="my-3">Branding Design</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, earum.</p>
-				</div>
-			</div>
-			<div class="col-lg-4">
-				<div class="service-item mb-5" data-aos="fade-left"  data-aos-delay="950">
-					<i class="ti-video-camera"></i>
-					<h4 class="my-3">Video Marketing</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, earum.</p>
-				</div>
-			</div>
-			<div class="col-lg-4">
-				<div class="service-item mb-5 mb-lg-0" data-aos="fade-left"  data-aos-delay="1050">
-					<i class="ti-android"></i>
-					<h4 class="my-3">App Design</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, earum.</p>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<!-- service end -->
-
+{% endblock %}
+{% block footer %}
 <!-- Footer start -->
 <section class="footer">
 	<div class="container">
@@ -316,51 +119,28 @@
 	</div>
 </section>
 <!-- Footer End -->
-
+{% endblock %}
 <!-- jQuery -->
-<script src="../static/plugins/jQuery/jquery.min.js"></script>
+<script src="{% static '/plugins/jQuery/jquery.min.js' %}"></script>
 <!-- Bootstrap JS -->
-<script src="../static/plugins/bootstrap/bootstrap.min.js"></script>
-<script src="../static/plugins/aos/aos.js"></script>
-<script src="../static/plugins/owl-carousel/owl.carousel.min.js"></script>
-<script src="../static/plugins/shuffle/shuffle.min.js"></script>
-<script src="../static/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
-<script src="../static/plugins/animated-text/animated-text.js"></script>
-<script src="../static/plugins/counto/apear.js"></script>
-<script src="../static/plugins/counto/counTo.js"></script>
+<script src="{% static '/plugins/bootstrap/bootstrap.min.js' %}"></script>
+<script src="{% static '/plugins/aos/aos.js' %}"></script>
+<script src="{% static '/plugins/owl-carousel/owl.carousel.min.js' %}"></script>
+<script src="{% static '/plugins/shuffle/shuffle.min.js' %}"></script>
+<script src="{% static '/plugins/magnific-popup/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static '/plugins/animated-text/animated-text.js' %}"></script>
+<script src="{% static '/plugins/counto/apear.js' %}"></script>
+<script src="{% static '/plugins/counto/counTo.js' %}"></script>
 
  <!-- Google Map -->
-<script src="../static/plugins/google-map/map.js"></script>
+<script src="{% static '/plugins/google-map/map.js' %}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script> 
 <!-- Main Script -->
-<script src="../static/js/script.js"></script>
+<script src="{% static '/js/script.js' %}"></script>
 
 </html>
 
 <body>
-<style>
-        html, body{
-            height: 100%;
-        }
-        .content{
-            width: 100%;
-            height: 100%;
-            background-image: url('{% static 'img/background.svg' %}');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center top;
-            text-align: center
-        }
-        {#.wrapper{#}
-        {#  width: 1000px;#}
-        {#  margin-top: 150px;#}
-        {#  padding: 50px;#}
-        {#  border-radius: 10px;#}
-        {#  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);#}
-        {#  background: white;#}
-        {#  display: inline-block;#}
-        {#}#}
-    </style>
 
 
 
@@ -373,14 +153,11 @@
             {{ form.errors }}
         </div>
         {% endif %}
-        {% block content %}
-        {% endblock content %}
     </div>
 
     {% block extra_content %}
     {% endblock extra_content %}
 </div>
-
 
 <!-- Jquery, Bootstrap JS -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
