@@ -1,16 +1,57 @@
-<!DOCTYPE HTML>
+{% extends 'base.html' %}
+{% load staticfiles %}
 <html>
-    <body>
-    <h1><a href="{% url 'user_messages:List' %}">메시지함</a></h1>
-    <h1>반짝</h1><a href="{% url 'matching:my_pet_list' %}">나의 동물들보기</a>
-        등록된 모든 반려동물들 보는 페이지
+{% block header %}
+    <nav class="navbar navbar-expand-lg  main-nav " id="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="{% static '/index.html' %}">
+                <img src="{% static '/images/logo.png' %}" alt="" class="img-fluid">
+            </a>
 
-        {% block content %}
-        <form method="get" >
-            {{ filter.form.as_p }}
-                <input type="submit" name="search" value="search"/>
-        </form>
-        <div>
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="ti-align-justify"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarsExample09">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item  active"><a class="nav-link" href="{% url 'account:home' %}">Home</a></li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdown01">
+                            <li><a class="dropdown-item" href="{% static '/about.html' %}">About Me</a></li>
+                            <li><a class="dropdown-item" href="{% static '/about-us.html' %}">About Us</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'user_messages:List' %}">메시지함</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'matching:my_pet_list' %}">내 동물들</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'account:home' %}">로그아웃</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+
+
+{% block content %}
+    <body>
+    <section class="section banner pb-lg-0">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2>We provide <span class="text-color">Matching Syestem.</span> <br>Your friends are presented here, check them below.</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <form method="get" >
+        {{ filter.form.as_p }}
+        <input type="submit" name="search" value="search"/>
+    </form>
+    <div>
         <h1>남의 동물들</h1>
         {% for object in object_list %}
             <ul>
@@ -41,6 +82,8 @@
         {% endfor %}
     </div>
 
-        {% endblock %}
     </body>
+
+{% endblock %}
+
 </html>
