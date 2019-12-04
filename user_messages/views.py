@@ -27,7 +27,6 @@ class UserMessageDetailView(generic.DetailView):
     model = UserMessages
     template_name = 'user_messages/user_message_detail.html'
 
-
 class UserMessageListView(generic.ListView):
     model = UserMessages
     template_name = 'user_messages/user_message_list.html'
@@ -35,3 +34,13 @@ class UserMessageListView(generic.ListView):
     def get_queryset(self):
         queryset = super(UserMessageListView, self).get_queryset()
         return queryset.filter(receiver=self.request.user)
+
+class UserMessageDeleteView(generic.DeleteView):
+    model = UserMessages
+    success_url = reverse_lazy('user_messages:List')
+
+    def get(self, request, *args, **kwargs):
+        return self.delete(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        return self.delete(request, *args, **kwargs)
