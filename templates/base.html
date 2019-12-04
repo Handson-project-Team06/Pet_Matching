@@ -9,7 +9,6 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Thomson-Minimal Portfolio Temaplate</title>
 
   <!-- mobile responsive meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,36 +35,8 @@
 <!-- Navigation Start -->
 <!-- Header Start --> 
 {% block header %}
-<nav class="navbar navbar-expand-lg  main-nav " id="navbar">
-	<div class="container">
-	  <a class="navbar-brand" href="{% static '/index.html' %}">
-	  	<img src="{% static '/images/logo.png' %}" alt="" class="img-fluid">
-	  </a>
-
-	  <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
-		<span class="ti-align-justify"></span>
-	  </button>
-  
-		  <div class="collapse navbar-collapse" id="navbarsExample09">
-			<ul class="navbar-nav ml-auto">
-			  <li class="nav-item  active"><a class="nav-link" href="{% url 'matching:home' %}">Home</a></li>
-
-			  <li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
-					<ul class="dropdown-menu" aria-labelledby="dropdown01">
-						<li><a class="dropdown-item" href="{% static '/about.html' %}">About Me</a></li>
-						<li><a class="dropdown-item" href="{% static '/about-us.html' %}">About Us</a></li>
-					</ul>
-			  </li>
-			   
-			   <li class="nav-item"><a class="nav-link" href="{% url 'matching:my_pet_list' %}">내 동물들</a></li>
-			   <li class="nav-item"><a class="nav-link" href="{% url 'user_messages:List' %}">메세지함</a></li>
-			   <li class="nav-item"><a class="nav-link" href="{% url 'accounts:home' %}">로그아웃</a></li>
-			</ul>
-		</div>
-	</div>
-</nav>
 {% endblock %}
+
 <!-- Header Close --> 
 
 
@@ -83,12 +54,11 @@
                         <b>반짝</b>
                     </span>
                 </h2>
-                <p>I must explain to you how all this mistaken idea of denouncing pleasure and praising pain <br>was born and I will give you a complete account of the system</p>
+                <p>반짝을 통해서 반려동물 친구를 찾아주세요!</p>
 			</div>
 		</div>
 	</div>
 </section>
-
 <!-- Banner End -->
 {% endblock %}
 {% block content %}
@@ -142,11 +112,7 @@
 
 <body>
 
-
-
 <div class="content">
-    {% block header_bar %}
-    {% endblock header_bar %}
     <div class="wrapper">
         {% if form.errors %}
         <div class="alert alert-danger" role="alert">
