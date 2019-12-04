@@ -61,7 +61,7 @@ class PetCreateView(generic.CreateView):
         location = "%s" % (address)
         latlng = self.geocode(location)
         latlng = latlng.split(',')
-        return latlng[0],latlng[1]
+        return latlng[0], latlng[1]
 
 # 내 반려동물 수정
 class PetUpdateView(generic.UpdateView):
@@ -98,6 +98,8 @@ class PetUpdateView(generic.UpdateView):
     
 class PetListDetailView(generic.DetailView):
         template_name = 'matching/pet_detail.html'
+        model = Pet
+
 
 # 내 반려동물 보기
 class MyPetListView(generic.ListView):
