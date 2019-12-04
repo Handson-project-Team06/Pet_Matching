@@ -1,20 +1,39 @@
 {% extends 'base.html' %}
 
+<title>반짝 홈페이</title>
 
 {% load staticfiles %}
-<!doctype html>
-{% block content %}
-<html lang="ko">
-<head>
-    <p>임시 홈뷰</p>
-</head>
-<body>
-<div>
-    <div class>
-        <button id="sign-in-btn" onclick="window.location = '{% url 'account:sign_in' %}';">로그인</button>
-        <button id="sign-up-btn" onclick="window.location = '{% url 'account:before_sign_up' %}';">회원가입</button>
-    </div>
-</div>
-</body>
+<html>
+
+{% block header %}
+    <nav class="navbar navbar-expand-lg  main-nav " id="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="{% static '/index.html' %}">
+                <img src="{% static '/images/logo.png' %}" alt="" class="img-fluid">
+            </a>
+
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="ti-align-justify"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarsExample09">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item  active"><a class="nav-link" href="{% url 'account:home' %}">Home</a></li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdown01">
+                            <li><a class="dropdown-item" href="{% static '/about.html' %}">About Me</a></li>
+                            <li><a class="dropdown-item" href="{% static '/about-us.html' %}">About Us</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item"><a class="nav-link" href="{% url 'account:sign_in' %}">로그인</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'account:before_sign_up' %}">회원가입</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 {% endblock %}
+
 </html>
