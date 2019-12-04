@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+
+{% block header %}
+  <nav class="navbar navbar-expand-lg  main-nav " id="navbar">
+    <div class="container">
+      <a class="navbar-brand">
+        <img src="{% static '/images/our_mark1.png' %}" alt="" class="img-fluid">
+      </a>
+
+      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="ti-align-justify"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExample09">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item  active"><a class="nav-link" href="{% url 'matching:home' %}">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'user_messages:List' %}">메시지함</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'matching:my_pet_list' %}">내 동물들</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'account:home' %}">로그아웃</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+{% endblock %}
+{% block content %}
+  <div class="text-center mb-5 contact-title">
+    <h2>Message Box</h2>
+  </div>
+  <div style="margin-left: 30px;">
+    <h4>메시지 내용 : {{ object.content }} </h4>
+  </div>
+  <div class="button_group">
+    <br>
+    <br>
+    <button class="btn btn-main" onclick="window.location = '{% url 'user_messages:create' user_id=object.sender_id pet_id=object.pet_id%}';" style="margin-right: 30px; margin-bottom: 30px; float: right;">답장 보내기</button>
+    <button class="btn btn-main" onclick="window.location = '{% url 'user_messages:delete' pk=object.id %}';" style="margin-right: 30px; margin-bottom: 30px; float: right;">메시지 삭제하기</button>
+  <br>
+  <br>
+  <br>
+  </div>
+{% endblock %}
