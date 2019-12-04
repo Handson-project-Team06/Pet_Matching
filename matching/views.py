@@ -64,7 +64,7 @@ class PetCreateView(generic.CreateView):
         return latlng[0],latlng[1]
 
 # 내 반려동물 수정
-class PetUpdateView(generic.UpdateView,):
+class PetUpdateView(generic.UpdateView):
     model = Pet
     form_class = PetCreationForm
     template_name = 'matching/pet_form.html'
@@ -96,7 +96,8 @@ class PetUpdateView(generic.UpdateView,):
         latlng = latlng.split(',')
         return latlng[0],latlng[1]
     
-    
+class PetListDetailView(generic.DetailView):
+        template_name = 'matching/pet_detail.html'
 
 # 내 반려동물 보기
 class MyPetListView(generic.ListView):
