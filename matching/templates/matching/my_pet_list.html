@@ -2,71 +2,65 @@
 {% load staticfiles %}
 
 {% block header %}
-    <nav class="navbar navbar-expand-lg  main-nav " id="navbar">
-        <div class="container">
-            <a class="navbar-brand" href="{% static '/index.html' %}">
-                <img src="{% static '/images/logo.png' %}" alt="" class="img-fluid">
-            </a>
+  <nav class="navbar navbar-expand-lg  main-nav " id="navbar">
+    <div class="container">
+      <a class="navbar-brand">
+        <img src="{% static '/images/our_mark1.png' %}" alt="" class="img-fluid">
+      </a>
 
-            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="ti-align-justify"></span>
-            </button>
+      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="ti-align-justify"></span>
+      </button>
 
-            <div class="collapse navbar-collapse" id="navbarsExample09">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item  active"><a class="nav-link" href="{% url 'account:home' %}">Home</a></li>
+      <div class="collapse navbar-collapse" id="navbarsExample09">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item  active"><a class="nav-link" href="{% url 'matching:home' %}">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'user_messages:List' %}">메시지함</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'matching:my_pet_list' %}">내 동물들</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'account:home' %}">로그아웃</a></li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdown01">
-                            <li><a class="dropdown-item" href="{% static '/about.html' %}">About Me</a></li>
-                            <li><a class="dropdown-item" href="{% static '/about-us.html' %}">About Us</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'user_messages:List' %}">메시지함</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'matching:my_pet_list' %}">내 동물들</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'account:home' %}">로그아웃</a></li>
-
-                </ul>
-            </div>
-        </div>
-    </nav>
+        </ul>
+      </div>
+    </div>
+  </nav>
 {% endblock %}
 
 {% block content %}
-    <a href="{% url 'matching:home' %}">홈으로</a>
-    <a href="{% url 'matching:pet_create' %}">애완동물 등록하기</a>
-    <div>
-        <h1>내 동물들</h1>
-        {% for object in object_list %}
-            <ul>
-                <li>
-                    이름 : {{ object.name }}
-                </li>
-                <li>
-                    나이 : {{ object.age }}
-                </li>
-                <li>
-                    몸무게 : {{ object.weight }}
-                </li>
-                <li>
-                    종 : {{ object.breed }}
-                </li>
-                <li>
-                    성별 : {{ object.get_gender_display }}
-                </li>
-                <li>
-                    사진 : <img alt="사진" src="{{ object.picture.url }}" style="width: 100px">
-                </li>
-                <li>
-                    <a href="{% url 'matching:pet_update' pk=object.id %}">펫 수정하기</a>
-                </li>
-                <li>
-                    <a href="{% url 'matching:pet_delete' pk=object.id %}">펫 삭제하기</a>
-                </li>
-            </ul>
-        {% empty %}
-            <h>내 동물이 없음 등록해주셈!!</h>
-        {% endfor %}
-    </div>
+  <div class="text-center mb-5 contact-title">
+    <h2>My Pet List</h2>
+  </div>
+  <a href="{% url 'matching:pet_create' %}">애완동물 등록하기</a>
+  <div>
+    <h1>내 동물들</h1>
+    {% for object in object_list %}
+      <ul>
+        <li>
+          이름 : {{ object.name }}
+        </li>
+        <li>
+          나이 : {{ object.age }}
+        </li>
+        <li>
+          몸무게 : {{ object.weight }}
+        </li>
+        <li>
+          종 : {{ object.breed }}
+        </li>
+        <li>
+          성별 : {{ object.get_gender_display }}
+        </li>
+        <li>
+          사진 : <img alt="사진" src="{{ object.picture.url }}" style="width: 100px">
+        </li>
+        <li>
+          <a href="{% url 'matching:pet_update' pk=object.id %}">펫 수정하기</a>
+        </li>
+        <li>
+          <a href="{% url 'matching:pet_delete' pk=object.id %}">펫 삭제하기</a>
+        </li>
+      </ul>
+    {% empty %}
+      <h>내 동물이 없음 등록해주셈!!</h>
+    {% endfor %}
+  </div>
 {% endblock %}
