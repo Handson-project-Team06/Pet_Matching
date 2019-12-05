@@ -5,9 +5,11 @@ from matching.models import Pet
 class PetCreationForm(forms.ModelForm):
     class Meta:
         model = Pet
-        fields = ('name', 'age', 'weight', 'breed', 'picture', 'gender'\
-            ,'animal','address'
+        fields = ('name','animal','breed', 'age', 'weight',  'picture', 'gender'\
+            ,'address','introduction'
         )
+        
+        widgets = { 'introduction': forms.TextInput(attrs={'size': 80})}
 
     def __init__(self, user, lat, lon, *args, **kwargs):
         super(PetCreationForm, self).__init__(*args, **kwargs)
