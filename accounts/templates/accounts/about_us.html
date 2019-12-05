@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+<html>
+
+<!-- Navigation Start -->
+<!-- Header Start -->
+{% block header %}
+    <nav class="navbar navbar-expand-lg  main-nav " id="navbar">
+        <div class="container">
+            <a class="navbar-brand">
+                <img src="{% static '/images/our_mark1.png' %}" alt="" class="img-fluid">
+            </a>
+
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="ti-align-justify"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarsExample09">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item  active"><a class="nav-link" href="{% url 'account:home' %}">Home</a></li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdown01">
+                            <li><a class="dropdown-item" href="{% url 'account:about' %}">About Me</a></li>
+                            <li><a class="dropdown-item" href="{% url 'account:about_us' %}">About Us</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item"><a class="nav-link" href="{% url 'account:sign_in' %}">로그인</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'account:before_sign_up' %}">회원가입</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+<!-- Header Close -->
+
+
+<!-- Navigation ENd -->
+{% block content %}
+    <!-- Banner Start -->
+    <section class="section banner-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10">
+                    <h2 class="cd-headline clip is-full-width mb-4">
+                        We provide <br>
+                        <span class="cd-words-wrapper text-color">
+                        <b class="is-visible">new friends</b>
+                        <b>playground</b>
+                        <b>great services</b>
+                    </span>
+                        <br>towards our pets
+                    </h2>
+                    <p class="mb-5"></p>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 50px;">
+                <div class="col-lg-4" data-aos="fade-right">
+                    <h4>게시판</h4>
+                    <p>여러분들의 친구가 될 반려동물을 찾을 수 있습니다.</p>
+                </div>
+
+                <div class="col-lg-4"  data-aos="fade-right" data-aos-delay="450">
+                    <h4>필터링</h4>
+                    <p>반려동물의 종, 성별, 나이, 거주 지역 등을 고려하여 알맞은 친구를 검색할 수 있습니다.</p>
+                </div>
+
+                <div class="col-lg-4"  data-aos="fade-right" data-aos-delay="450">
+                    <h4>메시지</h4>
+                    <p>마음에 드는 반려동물이 있다면 메시지로 마음을 전달하세요.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Banner End -->
+
+    <!-- About start -->
+    <section class="section skills border-top border-bottom ">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 pr-4">
+                    <div class="about-img2">
+                        <img src="../../../static/images/our_mark.png" alt="" class="img-fluid">
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="progress-bar-content mt-5 mt-lg-0">
+                        <div class="progress-label d-flex align-items-center">
+                            <div class="progress-title">Business Strategy</div>
+                            <span class="progress-bar-units ml-auto">80%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" data-percent="80"></div>
+                        </div>
+                    </div>
+                    <div class="progress-bar-content">
+                        <div class="progress-label d-flex align-items-center">
+                            <div class="progress-title">Design</div>
+                            <span class="progress-bar-units ml-auto">90%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" data-percent="90"></div>
+                        </div>
+                    </div>
+                    <div class="progress-bar-content">
+                        <div class="progress-label d-flex align-items-center">
+                            <div class="progress-title">Digital Strategy</div>
+                            <span class="progress-bar-units ml-auto">75%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" data-percent="75"></div>
+                        </div>
+                    </div>
+                    <div class="progress-bar-content">
+                        <div class="progress-label d-flex align-items-center">
+                            <div class="progress-title">Development</div>
+                            <span class="progress-bar-units ml-auto">85%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" data-percent="70"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About ENd  -->
+
+    <!-- Testimonial Start -->
+    <section class="section testimonial">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 text-center mb-5">
+                    <h2 class="mb-2">개발 후기</h2>
+                </div>
+            </div>
+
+
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-8">
+                    <div class="owl-carousel owl-theme">
+                        <div class="testimonial-content">
+                            <p>산업체핸즈온 프로젝트 수업을 들으며 정말 많이 배울 수 있었습니다.</p>
+                            <p> 이번학기 고생많으셨습니다. 다들!</p>
+
+                            <h4 class="mb-0">정민준</h4>
+                            <span>Team06 Member</span>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>후기</p>
+                            <h4 class="mb-0">정유석</h4>
+                            <span>Team06 Member</span>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>후기</p>
+                            <h4 class="mb-0">신상욱</h4>
+                            <span>Team06 Member</span>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>후기</p>
+                            <h4 class="mb-0">김승엽</h4>
+                            <span>Team06 Member</span>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>후기</p>
+                            <h4 class="mb-0">윤연경</h4>
+                            <span>Team06 Member</span>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>산업체 핸즈온을 통해 개발프로세스에 대하여 많이 배울 수 있었습니다. 감사합니다.</p>
+                            <h4 class="mb-0">신주환</h4>
+                            <span>Team06 Member</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Testimonial End -->
+{% endblock %}
+
+<!-- jQuery -->
+<script src="plugins/jQuery/jquery.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="plugins/bootstrap/bootstrap.min.js"></script>
+<script src="plugins/aos/aos.js"></script>
+<script src="plugins/owl-carousel/owl.carousel.min.js"></script>
+<script src="plugins/shuffle/shuffle.min.js"></script>
+<script src="plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+<script src="plugins/animated-text/animated-text.js"></script>
+<script src="plugins/counto/apear.js"></script>
+<script src="plugins/counto/counTo.js"></script>
+
+<!-- Google Map -->
+<script src="plugins/google-map/map.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>
+<!-- Main Script -->
+<script src="js/script.js"></script>
+
+</html>

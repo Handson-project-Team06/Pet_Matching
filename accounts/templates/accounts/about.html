@@ -1,0 +1,228 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+<html>
+
+<!-- Navgiation Start -->
+<!-- Header Start -->
+{% block header %}
+    <nav class="navbar navbar-expand-lg  main-nav " id="navbar">
+        <div class="container">
+            <a class="navbar-brand">
+                <img src="{% static '/images/our_mark1.png' %}" alt="" class="img-fluid">
+            </a>
+
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="ti-align-justify"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarsExample09">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item  active"><a class="nav-link" href="{% url 'account:home' %}">Home</a></li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdown01">
+                            <li><a class="dropdown-item" href="{% url 'account:about' %}">About Me</a></li>
+                            <li><a class="dropdown-item" href="{% url 'account:about_us' %}">About Us</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item"><a class="nav-link" href="{% url 'account:sign_in' %}">로그인</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'account:before_sign_up' %}">회원가입</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+<!-- Header Close -->
+
+<!-- Navigation ENd -->
+{% block content %}
+    <section class="section banner pb-lg-0">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2>This is our <span class="text-color">Team Member!</span> <br>Check out our profiles here</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Banner start -->
+    <section class="section banner-3">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-12">
+                    <div class="profile mb-5">
+                        <img src="../../../static/images/김승엽.jpg" alt="" class="img-fluid" style="height: 150px;">
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <h2>Seung Yeop Kim</h2>
+                    <p class="lead mb-4">Computer Science Engineering, CAU</p>
+
+                    <p class="mb-4">I'm crazy software engineer, specializing in Android App Design and Development. Welcome to Banjjak and Enjoy matching your pets!
+
+                </div>
+
+                <div class="col-lg-5">
+                    <ul class="list-unstyled mt-3 mb-5 about-list">
+                        <li>- Project Manager</li>
+                        <li>- Handling Documents</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section banner-3">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-12">
+                    <div class="profile mb-5">
+                        <img src="../../../static/images/신주환.jpg" alt="" class="img-fluid" style="height: 150px;">
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <h2>Shin Joo Hwan</h2>
+                    <p class="lead mb-4">Computer Science Engineering, CAU</p>
+
+                    <p class="mb-4">I was born in Los Angeles in 1980.I'm 23 years old creative web designer, specializing in User Interface Design and Development.
+                </div>
+
+                <div class="col-lg-5">
+                    <ul class="list-unstyled mt-3 mb-5 about-list">
+                        <li>- Tester</li>
+                        <li>- Handling Documents</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section banner-3">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-12">
+                    <div class="profile mb-5">
+                        <img src="../../../static/images/정민준.JPG" alt="" class="img-fluid" style="height: 200px;">
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <h2>Min Joon Jung</h2>
+                    <p class="lead mb-4">Computer Science Engineering, CAU</p>
+
+                    <p class="mb-4">I was born in Busan in 1996. I'm 24 years old creative web designer, specializing in User Interface Design and Development.
+                </div>
+
+                <div class="col-lg-5">
+                    <ul class="list-unstyled mt-3 mb-5 about-list">
+                        <li>- Main Developer</li>
+                        <li>- Web Design</li>
+                        <li>- Front-End</li>
+                        <li>- Back-End</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section banner-3">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-12">
+                    <div class="profile mb-5">
+                        {#                        <img src="../../../static/images/" alt="" class="img-fluid" style="height: 150px;">#}
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <h2>윤연경</h2>
+                    <p class="lead mb-4">Computer Science Engineering, CAU</p>
+
+                    <p class="mb-4">소개글
+                </div>
+
+                <div class="col-lg-5">
+                    <ul class="list-unstyled mt-3 mb-5 about-list">
+                        <li>- Main Developer</li>
+                        <li>- Web Design</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section banner-3">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-12">
+                    <div class="profile mb-5">
+                        {#                        <img src="../../../static/images/" alt="" class="img-fluid" style="height: 150px;">#}
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <h2>정유석</h2>
+                    <p class="lead mb-4">Computer Science Engineering, CAU</p>
+
+                    <p class="mb-4">소개글
+                </div>
+
+                <div class="col-lg-5">
+                    <ul class="list-unstyled mt-3 mb-5 about-list">
+                        <li>- Sub Developer</li>
+                        <li>- Web Design</li>
+                        <li>- Handling Documents</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section banner-3">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-12">
+                    <div class="profile mb-5">
+                        {#                        <img src="../../../static/images/" alt="" class="img-fluid" style="height: 150px;">#}
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <h2>신상욱</h2>
+                    <p class="lead mb-4">Business Administration, CAU</p>
+
+                    <p class="mb-4">소개글
+                </div>
+
+                <div class="col-lg-5">
+                    <ul class="list-unstyled mt-3 mb-5 about-list">
+                        <li>- Sub Developer</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Banner End -->
+
+
+{% endblock %}
+
+<!-- jQuery -->
+<script src="plugins/jQuery/jquery.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="plugins/bootstrap/bootstrap.min.js"></script>
+<script src="plugins/aos/aos.js"></script>
+<script src="plugins/owl-carousel/owl.carousel.min.js"></script>
+<script src="plugins/shuffle/shuffle.min.js"></script>
+<script src="plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+<script src="plugins/animated-text/animated-text.js"></script>
+<script src="plugins/counto/apear.js"></script>
+<script src="plugins/counto/counTo.js"></script>
+
+<!-- Google Map -->
+<script src="plugins/google-map/map.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>
+<!-- Main Script -->
+<script src="js/script.js"></script>
+
+</html>

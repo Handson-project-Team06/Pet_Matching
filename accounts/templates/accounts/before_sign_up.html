@@ -32,8 +32,8 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
             <ul class="dropdown-menu" aria-labelledby="dropdown01">
-              <li><a class="dropdown-item" href="{% static '/about.html' %}">About Me</a></li>
-              <li><a class="dropdown-item" href="{% static '/about-us.html' %}">About Us</a></li>
+              <li><a class="dropdown-item" href="{% url 'account:about' %}">About Me</a></li>
+              <li><a class="dropdown-item" href="{% url 'account:about_us' %}">About Us</a></li>
             </ul>
           </li>
           <li class="nav-item"><a class="nav-link" href="{% url 'account:sign_in' %}">로그인</a></li>
