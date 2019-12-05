@@ -25,9 +25,20 @@
     </div>
   </nav>
 {% endblock %}
-
-
 {% block content %}
+
+<section class="page-title section pb-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="text-center">
+          <h1 class="text-capitalize mb-0 text-lg">Explore</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</br>
 
 <div class="container">
   <form action="" method="get" >
@@ -39,14 +50,11 @@
     <span> <button type="submit"> search </button>
   </form>
 </div>
-  <div class="container">	
+</br>
 
-		<div class="row shuffle-wrapper portfolio-gallery">
+<div class="container">	
+  <div class="row shuffle-wrapper portfolio-gallery">
 	      
-
-
-	    
-
   {% if flag %}
     {% if dis_filter %}
       <br />pets nearby {{flag}}  km<br />
@@ -55,27 +63,20 @@
         {% if pet.owner == owner %}
         {% else %}
         <div class="col-lg-4 col-6 mb-4 shuffle-item" data-groups="[&quot;design&quot;,&quot;photo&quot;]">
-	        <div class="position-relative inner-box">
-	            <div class="image position-relative ">
-	               <img src="{{ pet.picture.url }}" alt="portfolio-image" class="img-fluid w-100 d-block">
-	                <div class="overlay-box">
-	                  <div class="overlay-inner">
-	                    <a class="overlay-content" href="{% url 'matching:pet_detail' pk=pet.id %}">
-	                       <h5 class="mb-0">Agency web</h5>
-	                      	<p>Design</p>
-	                    </a>
-	                  </div>
-	                </div> 
-	            </div>
-	        </div>
-	      </div>
-                  <img src="{{ pet.picture.url }}" alt="portfolio-image" class="img-fluid w-100 d-block" >
-                  {{ pet.name }}
-                  {{ pet.address}}
-                  {{ pet.get_gender_display }}
-                  {{ pet.lat }}
-                  {{ pet.lon }}
-                  {{ pet.address }}
+            <div class="position-relative inner-box">
+                <div class="image position-relative ">
+                   <img src="{{ pet.picture.url }}" alt="portfolio-image" class="img-fluid w-100 d-block " style ="width:100%">
+                    <div class="overlay-box">
+                      <div class="overlay-inner">
+                        <a class="overlay-content" href="{% url 'matching:pet_detail' pk=pet.id %}">
+                           <h5 class="mb-0">{{ pet.name }}</h5>
+                            <p>{{ pet.introduction }}</p>
+                        </a>
+                      </div>
+                    </div> 
+                </div>
+            </div>
+          </div>
                 
         {% endif %}
       {% endfor %}
@@ -95,22 +96,14 @@
                 <div class="overlay-box">
                   <div class="overlay-inner">
                     <a class="overlay-content" href="{% url 'matching:pet_detail' pk=pet.id %}">
-                       <h5 class="mb-0">Agency web</h5>
-                        <p>Design</p>
+                       <h5 class="mb-0">{{ pet.name }}</h5>
+                        <p>{{ pet.introduction }}</p>
                     </a>
                   </div>
                 </div> 
             </div>
         </div>
       </div>
-                
-                {{ pet.name }}
-                {{ pet.address}}
-                {{ pet.get_gender_display }}
-                {{ pet.lat }}
-                {{ pet.lon }}
-                {{ pet.address }}
-              
       {% endif %}
     {% endfor %}
   {% endif %}
