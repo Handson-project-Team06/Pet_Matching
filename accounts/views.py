@@ -39,3 +39,9 @@ class SignOutView(generic.RedirectView):
     def dispatch(self, request, *args, **kwargs):
         auth_logout(request)
         return super(SignOutView, self).dispatch(request, *args, **kwargs)
+
+class AboutMeView(generic.TemplateView):
+    template_name = 'accounts/about.html'
+
+class AboutUsView(generic.TemplateView):
+    template_name = 'accounts/about_us.html'
