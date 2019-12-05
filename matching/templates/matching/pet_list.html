@@ -1,42 +1,81 @@
-<!DOCTYPE HTML>
+{% extends 'base.html' %}
+{% load staticfiles %}
 <html>
-    <body>
-    <h1>반짝</h1><a href="{% url 'matching:my_pet_list' %}">나의 동물들보기</a>
-        등록된 모든 반려동물들 보는 페이지
+{% block header %}
+  <nav class="navbar navbar-expand-lg  main-nav " id="navbar">
+    <div class="container">
+      <a class="navbar-brand">
+        <img src="{% static '/images/our_mark1.png' %}" alt="" class="img-fluid">
+      </a>
 
-        {% block content %}
-        <form method="get" >
-            {{ filter.form.as_p }}
-                <input type="submit" name="search" value="search"/>
-        </form>
-        <div>
-        <h1>남의 동물들</h1>
-        {% for object in object_list %}
-            <ul>
-                <li>
-                    {{ object.name }}
-                </li>
-                <li>
-                    {{ object.age }}
-                </li>
-                <li>
-                    {{ object.weight }}
-                </li>
-                <li>
-                    {{ object.breed }}
-                </li>
-                <li>
-                    {{ object.get_gender_display }}
-                </li>
-                <li>
-                    <img alt="사진" src="{{ object.picture.url }}" style="width: 100px">
-                </li>
-            </ul>
-        {% empty %}
-            <h>교미할 동물이 없음 등록해주셈!!</h>
-        {% endfor %}
+      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="ti-align-justify"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExample09">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item  active"><a class="nav-link" href="{% url 'matching:home' %}">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'user_messages:List' %}">메시지함</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'matching:my_pet_list' %}">내 동물들</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'account:home' %}">로그아웃</a></li>
+
+        </ul>
+      </div>
     </div>
+  </nav>
+{% endblock %}
 
-        {% endblock %}
-    </body>
+
+{% block content %}
+  <body>
+  <section class="section banner pb-lg-0">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+          <h2>We provide <span class="text-color">Matching Syestem.</span> <br>Your friends are presented here, check them below.</h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <form method="get" >
+    {{ filter.form.as_p }}
+    <input type="submit" name="search" value="search"/>
+  </form>
+  <div>
+    <h1>남의 동물들</h1>
+    {% for object in object_list %}
+      <ul>
+        <li>
+          {{ object.name }}
+        </li>
+        <li>
+          {{ object.age }}
+        </li>
+        <li>
+          {{ object.weight }}
+        </li>
+        <li>
+          {{ object.breed }}
+        </li>
+        <li>
+          {{ object.get_gender_display }}
+        </li>
+        <li>
+          <img alt="사진" src="{{ object.picture.url }}" style="width: 100px">
+        </li>
+        <li>
+          <a href="{% url 'user_messages:create' user_id=object.owner_id pet_id=object.id %}">메시지보내기</a>
+        </li>
+      </ul>
+    {% empty %}
+      <h>현재 등록된 동물이 없습니다.</h>
+    {% endfor %}
+  </div>
+
+  </body>
+
+{% endblock %}
+
 </html>

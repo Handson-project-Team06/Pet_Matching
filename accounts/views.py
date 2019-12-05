@@ -11,6 +11,9 @@ from matching.models import *
 class HomeView(generic.TemplateView):
     template_name = 'accounts/home.html'
 
+class BeforeSignUpView(generic.TemplateView):
+    template_name = 'accounts/before_sign_up.html'
+
 class SignUpView(generic.CreateView):
     form_class = UserCreationForm
     template_name = 'accounts/sign_up.html'

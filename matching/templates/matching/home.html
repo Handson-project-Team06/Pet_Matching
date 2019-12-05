@@ -1,19 +1,75 @@
-<!DOCTYPE HTML>
-<html>
-    <body>
-    <h1>반짝</h1><a href="{% url 'matching:my_pet_list' %}">나의 동물들보기</a>
-        등록된 모든 반려동물들 보는 페이지
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
 
-        {% block content %}
-        <form action="" method="get" >
-            {{ filter.form.as_p }}
-                <input type="submit" name="search" value="search"/>
-        </form>
-        {% for pet in filter.qs %}
-        {{ pet.name }} <br />
+  <div class="container">
+    <form action="" method="get" >
+      {{ filter.form }}
+      <input type="submit" name="search" value="search"/>
+    </form>
+    <form method="get" action="">
+      내 주변 <input name="distance_search" placeholder="" type="number" > km 까지
+      <span> <button type="submit"> search </button>
+    </form>
+
+
+    {% if flag %}
+      {% if dis_filter %}
+        <br />pets nearby {{flag}}  km<br />
+        {% for pet in dis_filter %}
+          <br />
+          {% if pet.owner == owner %}
+          {% else %}
+            <div class="row shuffle-wrapper portfolio-gallery">
+              <div class="col-lg-4 col-6 mb-4 shuffle-item"  data-groups="[&quot;design&quot;,&quot;illustration&quot;]">
+                <div class="position-relative inner-box">
+                  <div class="image position-relative ">
+                    <img src="{{ pet.picture.url }}" alt="portfolio-image" class="img-fluid w-100 d-block" >
+                    {{ pet.name }}
+                    {{ pet.address}}
+                    {{ pet.get_gender_display }}
+                    {{ pet.lat }}
+                    {{ pet.lon }}
+                    {{ pet.address }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endif %}
         {% endfor %}
-        
-        {% endblock %}
-    </body>
-</html>
+      {% else %}
+        <br />no pets nearby {{ flag }} km
+      {% endif %}
+    {% else %}
+      <br />
+      {% for pet in filter.qs %}
+        <br />
+        {% if pet.owner == owner %}
+        {% else %}
+          <div class="row shuffle-wrapper portfolio-gallery">
+            <div class="col-lg-4 col-6 mb-4 shuffle-item"  data-groups="[&quot;design&quot;,&quot;illustration&quot;]">
+              <div class="position-relative inner-box">
+                <div class="image position-relative ">
+                  <img src="{{ pet.picture.url }}" alt="portfolio-image" class="img-fluid w-100 d-block" >
+                  {{ pet.name }}
+                  {{ pet.address}}
+                  {{ pet.get_gender_display }}
+                  {{ pet.lat }}
+                  {{ pet.lon }}
+                  {{ pet.address }}
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+
+
+  </div>
+
+{% endblock %}
+
+
+
         

@@ -1,18 +1,25 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from .models import Pet
-from .filters import PetFilter
+from .filters import PetFilter,get_locations_nearby_coords,getplace
 from django.views import generic
 from matching.forms import PetCreationForm
 from django.urls import reverse_lazy
-
-
+import urllib.request,urllib.parse
+import simplejson as json
+from accounts.models import User
 # Create your views here.
 
 def home(request):
     pet_list = Pet.objects.all()
     pet_filter = PetFilter(request.GET,queryset=pet_list)
-    return render(request,'matching/home.html',{'filter':pet_filter})
-
+    owner=request.user
+    if 'distance_search' in request.GET:
+        max_distance = int(request.GET['distance_search'])
+        dis_filter , distance = get_locations_nearby_coords(owner.address, max_distance)
+        flag=int(request.GET['distance_search'])
+        #dis_filter = PetFilter(request.GET,queryset=dis_filter)
+        return render(request,'matching/home.html',{'filter':pet_filter,'dis_filter':dis_filter, 'distance':distance,'owner':owner,'flag':flag})
+    return render(request,'matching/home.html',{'filter':pet_filter,'owner':owner})
 
 # 반려동물 리스트
 class PetListView(generic.ListView):
@@ -23,7 +30,6 @@ class PetListView(generic.ListView):
         queryset = super(PetListView, self).get_queryset()
         return queryset.exclude(owner=self.request.user)
 
-
 # 내 반려동물 등록
 class PetCreateView(generic.CreateView):
     model = Pet
@@ -33,11 +39,31 @@ class PetCreateView(generic.CreateView):
 
     def get_form_kwargs(self):
         kwargs = super(PetCreateView, self).get_form_kwargs()
+        kwargs['lat'], kwargs['lon'] = self.new_pet()
         kwargs['user'] = self.request.user
         return kwargs
 
+    def geocode(self, location):
+        key = "AIzaSyBlu5QpKaxho5vC2yN871kC0vEgtcMqNfQ"
+        output = "json"
+        location = urllib.parse.quote(location)
+        request = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=%s&language=ko&inputtype=textquery&fields=geometry&key=%s" % (location, key)
+        data = urllib.request.urlopen(request).read()
+        dlist = json.loads(data.decode('utf-8'))
+        if dlist["status"] == "OK":
+            return "%s,%s" % (dlist['candidates'][0]['geometry']['location']['lat'],\
+                 dlist['candidates'][0]['geometry']['location']['lng'])
+        else:
+            return ','
 
-# 내 반려동물 등록
+    def new_pet(self):
+        address = self.request.POST.get('address')
+        location = "%s" % (address)
+        latlng = self.geocode(location)
+        latlng = latlng.split(',')
+        return latlng[0], latlng[1]
+
+# 내 반려동물 수정
 class PetUpdateView(generic.UpdateView):
     model = Pet
     form_class = PetCreationForm
@@ -46,8 +72,33 @@ class PetUpdateView(generic.UpdateView):
 
     def get_form_kwargs(self):
         kwargs = super(PetUpdateView, self).get_form_kwargs()
+        kwargs['lat'], kwargs['lon'] = self.edit_pet()
         kwargs['user'] = self.request.user
         return kwargs
+
+    def geocode(self, location):
+        key = "AIzaSyBlu5QpKaxho5vC2yN871kC0vEgtcMqNfQ"
+        output = "json"
+        location = urllib.parse.quote(location)
+        request = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=%s&language=ko&inputtype=textquery&fields=geometry&key=%s" % (location, key)
+        data = urllib.request.urlopen(request).read()
+        dlist = json.loads(data.decode('utf-8'))
+        if dlist["status"] == "OK":
+            return "%s,%s" % (dlist['candidates'][0]['geometry']['location']['lat'],\
+                 dlist['candidates'][0]['geometry']['location']['lng'])
+        else:
+            return ','
+
+    def edit_pet(self):
+        pet=get_object_or_404(Pet,pk=self.kwargs['pk'])
+        location = "%s" % (pet.address)
+        latlng = self.geocode(location)
+        latlng = latlng.split(',')
+        return latlng[0],latlng[1]
+    
+class PetListDetailView(generic.DetailView):
+        template_name = 'matching/pet_detail.html'
+        model = Pet
 
 
 # 내 반려동물 보기

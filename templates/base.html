@@ -1,42 +1,97 @@
-<!doctype html>
-<html lang="ko">
-<head>
-    {% load static %}
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% load static %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css" integrity="sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js" integrity="sha384-3qaqj0lc6sV/qpzrc1N5DC6i1VRn/HyX4qdPaiEFbn54VjQBEU341pvjz7Dv3n6P" crossorigin="anonymous"></script>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <title>{% block title %}{% endblock %}</title>
-    {% block extra_style %}
-    {% endblock %}
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <!-- mobile responsive meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- ** Plugins Needed for the Project ** -->
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static '/plugins/bootstrap/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '/plugins/themify/css/themify-icons.css' %}">
+    <link rel="stylesheet" href="{% static '/plugins/counto/animate.css' %}">
+    <link rel="stylesheet" href="{% static '/plugins/aos/aos.css' %}">
+    <link rel="stylesheet" href="{% static '/plugins/owl-carousel/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static '/plugins/owl-carousel/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static '/plugins/magnific-popup/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static '/plugins/animated-text/animated-text.css' %}">
+
+    <!-- Main Stylesheet -->
+    <link href="{% static '/css/style.css'%}" rel="stylesheet">
+
 </head>
+
 <body>
 
+<!-- Navigation Start -->
+<!-- Header Start -->
+{% block header %}
+{% endblock %}
 
-<div class="content">
-    {% block header_bar %}
-        {% if user.is_authenticated %}
-        <a href="{% url 'logout' %}">로그아웃</a>
-        {% else %}
-        <a href="{% url 'login' %}">로그인</a>
-        {% endif %}
-    {% endblock header_bar %}
-    <div class="wrapper">
-        {% if form.errors %}
-        <div class="alert alert-danger" role="alert">
-            {{ form.errors }}
+<!-- Header Close -->
+
+{% block banner %}
+{% endblock %}
+
+{% block content %}
+{% endblock %}
+
+{% block footer %}
+    <!-- Footer start -->
+    <section class="footer">
+        <div class="container">
+            <div class="row ">
+                <div class="col-lg-6">
+                    <p class="mb-0">Copyrights © 2019. Designed & Developed by <a href="themefisher.com" class="text-white">Themefisher</a></p>
+                </div>
+                <div class="col-lg-6">
+                    <div class="widget footer-widget text-lg-right mt-5 mt-lg-0">
+                        <ul class="list-inline mb-0">
+                            <li class="list-inline-item"><a href="https://www.facebook.com/themefisher" target="_blank"><i class="ti-facebook mr-3"></i></a>
+                            </li>
+                            <li class="list-inline-item"><a href="https://twitter.com/themefisher" target="_blank"><i class="ti-twitter mr-3"></i></a>
+                            </li>
+                            <li class="list-inline-item"><a href="https://github.com/themefisher/" target="_blank"><i class="ti-github mr-3"></i></a></li>
+                            <li class="list-inline-item"><a href="https://www.pinterest.com/themefisher/" target="_blank"><i class="ti-pinterest mr-3"></i></a></li>
+                            <li class="list-inline-item"><a href="https://dribbble.com/themefisher/" target="_blank"><i class="ti-dribbble mr-3"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
-        {% endif %}
-        {% block content %}
-        {% endblock content %}
-    </div>
+    </section>
+    <!-- Footer End -->
+{% endblock %}
+<!-- jQuery -->
+<script src="{% static '/plugins/jQuery/jquery.min.js' %}"></script>
+<!-- Bootstrap JS -->
+<script src="{% static '/plugins/bootstrap/bootstrap.min.js' %}"></script>
+<script src="{% static '/plugins/aos/aos.js' %}"></script>
+<script src="{% static '/plugins/owl-carousel/owl.carousel.min.js' %}"></script>
+<script src="{% static '/plugins/shuffle/shuffle.min.js' %}"></script>
+<script src="{% static '/plugins/magnific-popup/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static '/plugins/animated-text/animated-text.js' %}"></script>
+<script src="{% static '/plugins/counto/apear.js' %}"></script>
+<script src="{% static '/plugins/counto/counTo.js' %}"></script>
 
-    {% block extra_content %}
-    {% endblock extra_content %}
-</div>
+<!-- Google Map -->
+<script src="{% static '/plugins/google-map/map.js' %}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>
+<!-- Main Script -->
+<script src="{% static '/js/script.js' %}"></script>
+
+
+<body>
+
 
 
 <!-- Jquery, Bootstrap JS -->

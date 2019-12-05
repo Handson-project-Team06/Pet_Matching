@@ -1,37 +1,119 @@
-{% block content %}
-    <div>
-        <h1 id="sign-up-title">반짝 회원가입</h1>
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+  반짝-회원가입
+{% endblock %}
+
+{% block extra_style %}
+{% endblock %}
+
+{% block header %}
+  <nav class="navbar navbar-expand-lg  main-nav " id="navbar">
+    <div class="container">
+      <a class="navbar-brand">
+        <img src="{% static '/images/our_mark1.png' %}" alt="" class="img-fluid">
+      </a>
+
+      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="ti-align-justify"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExample09">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item  active"><a class="nav-link" href="{% url 'account:home' %}">Home</a></li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
+            <ul class="dropdown-menu" aria-labelledby="dropdown01">
+              <li><a class="dropdown-item" href="{% static '/about.html' %}">About Me</a></li>
+              <li><a class="dropdown-item" href="{% static '/about-us.html' %}">About Us</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item"><a class="nav-link" href="{% url 'account:sign_in' %}">로그인</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'account:before_sign_up' %}">회원가입</a></li>
+        </ul>
+      </div>
     </div>
-    <form action="{% url 'accounts:sign_up' %}" method="post">
-        {% csrf_token %}
-        <div class="field-input">
+  </nav>
+{% endblock %}
+
+
+{% block banner %}
+  <!-- Banner Start -->
+  <section class="section banner">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10">
+          <h2 class="cd-headline clip is-full-width mb-4 ">
+            반짝 <br>
+            <span class="cd-words-wrapper text-color">
+                        <b class="is-visible">애완다</b>
+                        <b>친구찾기</b>
+                        <b>반짝</b>
+                    </span>
+          </h2>
+          <p>반짝을 통해서 반려동물 친구를 찾아주세요!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Banner End -->
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-lg-12">
+        <div class="profile mb-5">
+          <img src="../../../static/images/sign_in1.jpg" alt="" class="img-fluid">
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <form action="{% url 'accounts:sign_up' %}" method="post">
+          {% csrf_token %}
+          <div class="field-input">
             <label class="col-md-3" for="id_name">이름</label> <input class="col-md-9" type="text" name="name" maxlength="15" required="" id="id_name">
-        </div>
-        <div class="field-input">
+          </div>
+          <div class="field-input">
             <label class="col-md-3" for="id_phone_number">핸드폰 번호</label> <input class="col-md-9" type="text" name="phone_number" maxlength="13" required="" id="id_phone_number">
-        </div>
-        <div class="field-input">
+          </div>
+          <div class="field-input">
             <label class="col-md-3" for="id_birth_date">생년월일</label> <input class="col-md-9" type="text" name="birth_date" required="" id="id_birth_date" placeholder="yyyy-mm-dd">
-        </div>
-        <div class="field-input">
+          </div>
+          <div class="field-input">
             <label class="col-md-3" for="id_email">이메일</label> <input class="col-md-9" type="email" name="email" maxlength="254" id="id_email">
-        </div>
-        <div class="field-input">
+          </div>
+          <div class="field-input">
             <label class="col-md-3" for="id_address">주소</label> <input class="col-md-9" type="text" name="address" maxlength="254" id="id_address">
-        </div>
-        <div class="field-input">
+          </div>
+          <div class="field-input">
             <label class="col-md-3" for="id_username">아이디</label> <input class="col-md-9" type="text" name="username" maxlength="150" autofocus="" required="" id="id_username">
-        </div>
-        <div class="field-input">
+          </div>
+          <div class="field-input">
             <label class="col-md-3" for="id_password1">비밀번호</label> <input class="col-md-9" type="password" name="password1" required="" id="id_password1">
-        </div>
-        <div class="field-input">
+          </div>
+          <div class="field-input">
             <label class="col-md-3" for="id_password2">비밀번호 확인</label> <input class="col-md-9" type="password" name="password2" required="" id="id_password2">
-        </div>
-        <div class="row">
-            <button type="submit">회원가입</button>
-        </div>
-{#    {{ form.as_p }}#}
-{#    <button type="submit">sibal</button>#}
-    </form>
+          </div>
+          <br>
+          <br>
+          <div class="text-left">
+            <button class="btn btn-main" type="submit">회원가입</button>
+          </div>
+        </form>
+        <br>
+        <br>
+      </div>
+      <div class="col-lg-5">
+        <ul class="list-unstyled mt-3 mb-5 about-list">
+          <li>- 내 반려동물을 등록할 수 있습니다.</li>
+          <li>- 원하는 기준으로 반려동물 친구를 검색할 수 있습니다.</li>
+          <li>- 친구를 찾아 쪽지를 보내주세요</li>
+          <li>- 사진과 자세한 소개를 등록해주세요</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 {% endblock %}
