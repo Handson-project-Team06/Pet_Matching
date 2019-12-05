@@ -9,7 +9,7 @@ import simplejson as json
 from accounts.models import User
 # Create your views here.
 
-def home(request):
+def pet_list_function(request):
     pet_list = Pet.objects.all()
     pet_filter = PetFilter(request.GET,queryset=pet_list)
     owner=request.user
