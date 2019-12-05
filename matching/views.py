@@ -18,8 +18,9 @@ def home(request):
         dis_filter , distance = get_locations_nearby_coords(owner.address, max_distance)
         flag=int(request.GET['distance_search'])
         #dis_filter = PetFilter(request.GET,queryset=dis_filter)
-        return render(request,'matching/home.html',{'filter':pet_filter,'dis_filter':dis_filter, 'distance':distance,'owner':owner,'flag':flag})
-    return render(request,'matching/home.html',{'filter':pet_filter,'owner':owner})
+        return render(request,'matching/pet_list.html',{'filter':pet_filter,'dis_filter':dis_filter, 'distance':distance,'owner':owner,'flag':flag})
+    return render(request,'matching/pet_list.html',{'filter':pet_filter,'owner':owner})
+
 
 # 반려동물 리스트
 class PetListView(generic.ListView):
@@ -96,10 +97,11 @@ class PetUpdateView(generic.UpdateView):
         latlng = latlng.split(',')
         return latlng[0],latlng[1]
     
+#반려동물 상세페이지
 class PetListDetailView(generic.DetailView):
         template_name = 'matching/pet_detail.html'
         model = Pet
-
+        
 
 # 내 반려동물 보기
 class MyPetListView(generic.ListView):

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load staticfiles %}
+{% load static %}
 
 <html>
 {% block header %}
@@ -28,50 +28,96 @@
 
 
 {% block content %}
-  <body>
-  <section class="section banner pb-lg-0">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-8 text-center">
-          <h2>We provide <span class="text-color">Matching Syestem.</span> <br>Your friends are presented here, check them below.</h2>
+
+<div class="container">
+  <form action="" method="get" >
+    {{ filter.form }}
+    <input type="submit" name="search" value="search"/>
+  </form>
+  <form method="get" action="">
+    내 주변 <input name="distance_search" placeholder="" type="number" > km 까지
+    <span> <button type="submit"> search </button>
+  </form>
+</div>
+  <div class="container">	
+
+		<div class="row shuffle-wrapper portfolio-gallery">
+	      
+
+
+	    
+
+  {% if flag %}
+    {% if dis_filter %}
+      <br />pets nearby {{flag}}  km<br />
+      {% for pet in dis_filter %}
+        <br />
+        {% if pet.owner == owner %}
+        {% else %}
+        <div class="col-lg-4 col-6 mb-4 shuffle-item" data-groups="[&quot;design&quot;,&quot;photo&quot;]">
+	        <div class="position-relative inner-box">
+	            <div class="image position-relative ">
+	               <img src="{{ pet.picture.url }}" alt="portfolio-image" class="img-fluid w-100 d-block">
+	                <div class="overlay-box">
+	                  <div class="overlay-inner">
+	                    <a class="overlay-content" href="{% url 'matching:pet_detail' pk=pet.id %}">
+	                       <h5 class="mb-0">Agency web</h5>
+	                      	<p>Design</p>
+	                    </a>
+	                  </div>
+	                </div> 
+	            </div>
+	        </div>
+	      </div>
+                  <img src="{{ pet.picture.url }}" alt="portfolio-image" class="img-fluid w-100 d-block" >
+                  {{ pet.name }}
+                  {{ pet.address}}
+                  {{ pet.get_gender_display }}
+                  {{ pet.lat }}
+                  {{ pet.lon }}
+                  {{ pet.address }}
+                
+        {% endif %}
+      {% endfor %}
+    {% else %}
+      <br />no pets nearby {{ flag }} km
+    {% endif %}
+  {% else %}
+    <br />
+    {% for pet in filter.qs %}
+      <br />
+      {% if pet.owner == owner %}
+      {% else %}
+      <div class="col-lg-4 col-6 mb-4 shuffle-item" data-groups="[&quot;design&quot;,&quot;photo&quot;]">
+        <div class="position-relative inner-box">
+            <div class="image position-relative ">
+               <img src="{{ pet.picture.url }}" alt="portfolio-image" class="img-fluid w-100 d-block " style ="width:100%">
+                <div class="overlay-box">
+                  <div class="overlay-inner">
+                    <a class="overlay-content" href="{% url 'matching:pet_detail' pk=pet.id %}">
+                       <h5 class="mb-0">Agency web</h5>
+                        <p>Design</p>
+                    </a>
+                  </div>
+                </div> 
+            </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <div>
-    {% for object in object_list %}
-            <h1>남의 동물들</h1>
-      <ul>
-        <li>
-          {{ object.name }}
-        </li>
-        <li>
-          {{ object.age }}
-        </li>
-        <li>
-          {{ object.weight }}
-        </li>
-        <li>
-          {{ object.breed }}
-        </li>
-        <li>
-          {{ object.get_gender_display }}
-        </li>
-        <li>
-          <img alt="사진" src="{{ object.picture.url }}" style="width: 100px">
-        </li>
-        <li>
-          <a href="{% url 'user_messages:create' user_id=object.owner_id pet_id=object.id %}">메시지보내기</a>
-        </li>
-      </ul>
-    {% empty %}
-      <section class="section banner-3">
-      </section>
+                
+                {{ pet.name }}
+                {{ pet.address}}
+                {{ pet.get_gender_display }}
+                {{ pet.lat }}
+                {{ pet.lon }}
+                {{ pet.address }}
+              
+      {% endif %}
     {% endfor %}
-  </div>
+  {% endif %}
 
-  </body>
+
+</div>
+</div>
 
 {% endblock %}
 
