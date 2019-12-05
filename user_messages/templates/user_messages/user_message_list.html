@@ -31,14 +31,15 @@
 
   {% for object in object_list %}
     <section class="section banner-3">
-      <div class="container">
+      <div class="container" style="border:2px solid red; padding:15px;">
         <div class="row">
           <div class="col-lg-12 col-md-12">
             <div class="post mb-5 contact-title">
-{#              <img alt="사진" src="{{ object.picture.url }}" style="width: 100px">#}
-              <h2>Title : {{ object.title }}</h2>
+              {#              <img alt="사진" src="{{ object.picture.url }}" style="width: 100px">#}
+              <h3>Title : {{ object.title }}</h3>
               <div class="post-content">
-                <span class="date text-uppercase text-sm">{{ object.created }}</span>
+                <span class="date text-uppercase text-sm"><p>{{ object.created }}</p></span>
+                <span class="date text-uppercase text-sm"><p>{{ object.sender }}님 께서 보낸 쪽지</p></span>
                 <button class="btn btn-main" onclick="window.location = '{% url 'user_messages:detail' pk=object.id %}';" style="float: right">메시지 보기</button>
               </div>
             </div>
