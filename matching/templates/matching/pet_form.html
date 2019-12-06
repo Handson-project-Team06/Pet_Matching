@@ -1,9 +1,132 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block header %}
+  <nav class="navbar navbar-expand-lg  main-nav " id="navbar">
+    <div class="container">
+      <a class="navbar-brand">
+        <img src="{% static '/images/our_mark1.png' %}" alt="" class="img-fluid">
+      </a>
+
+      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="ti-align-justify"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExample09">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item  active"><a class="nav-link" href="{% url 'matching:home' %}">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'user_messages:List' %}">메시지함</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'matching:my_pet_list' %}">내 동물들</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'account:home' %}">로그아웃</a></li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+{% endblock %}
 
 {% block content %}
-    <form action="." method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button>{% if object.pk %}수정{% else %}만들기{% endif %}</button>
-    </form>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="text-center mb-5 contact-title">
+                <h2>Register Your Pet</h2>
+            </div>
+            <form action="." method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+         <!-- form message -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="alert alert-success contact__msg" style="display: none" role="alert">
+                        Your message was sent successfully.
+                    </div>
+                </div>
+            </div>
+            <!-- end message -->
+            <div class="form-row">
+                <div class="col-lg-12">
+                    <div class="form-group mb-3">
+                        <label for="id_name"></label>
+                        <input id="id_name" name="id_name" type="text" class="form-control" placeholder="Pet Name">
+                    </div>
+                </div>
+                
+
+                <div class="col-lg-6">
+                    <div class="form-group mb-3">
+                        Select Animal Type
+                        <label for="form.animal"></label>
+                        <select id="id_animal" name="id_animal"  class="form-control"placeholder="Email Address" >
+                                {% for x in form.animal %}
+                                    <option value="{{ x }}">{{ x.name }}</option>
+                                {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group mb-3">
+                        Select Gender
+                        <label for="id_gender"></label>
+                        <select id="id_gender" name="id_gender"  class="form-control"placeholder="Email Address" >
+                                {% for x in form.gender %}
+                                    <option value="{{ x }}">{{ x.name }}</option>
+                                {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group mb-3">
+                            <label for="id_age"></label>
+                            <input id="id_age" name="id_age" type="number" class="form-control" placeholder="Pet Age">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group mb-3">
+                            <label for="id_weight"></label>
+                            <input id="id_weight" name="id_weight" type="number" class="form-control" placeholder="Pet Weight">
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="form-group mb-3">
+                            <label for="id_breed"></label>
+                            <input id="id_breed" name="id_breed" type="text" class="form-control" placeholder="Breed Name">
+                    </div>
+                </div>
+                
+                <div class="col-lg-12">
+                    
+                        <div class="form-group mb-3" >
+                            Select Picture of Pet : 
+                            <label for="id_picture"></label>
+                            <form method='post' enctype='multipart-formdata' class="form-control">
+                                    {% csrf_token %}
+                                    {{ form.picture }}
+                        </div>
+                    
+                </div>
+                <div class="col-lg-12">
+                    <div class="form-group mb-3">
+                            <label for="id_address"></label>
+                            <input id="id_address" name="id_name" type="text" class="form-control" placeholder="Pet Address">
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                     <div class="form-group-2 mb-4">
+                         <label for="id_introduction"></label>
+                        <textarea id="id_introduction" name="id_introduction" class="form-control" rows="6" placeholder="Introduction of your Pet"></textarea>
+                    </div>
+                    
+                    <div class="text-center">
+                        
+                        <button class="btn btn-main" name="submit" type="submit">{% if object.pk %}수정{% else %}만들기{% endif %}</button>
+                        
+                    </div>
+                </div>
+            </div>
+        </form>
+        </div>  
+    </div>
+</div>
+
+
+
 {% endblock %}
