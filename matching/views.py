@@ -13,12 +13,11 @@ def pet_list_function(request):
     pet_list = Pet.objects.all()
     pet_filter = PetFilter(request.GET,queryset=pet_list)
     owner=request.user
-    if 'distance_search' in request.GET and request.GET['distance_search'] :
-        max_distance = int(request.GET['distance_search'])
-        dis_filter , distance = get_locations_nearby_coords(owner.address, max_distance)
+    if request.GET['distance_search'] : 
         flag=int(request.GET['distance_search'])
-        #dis_filter = PetFilter(request.GET,queryset=dis_filter)
-        return render(request,'matching/pet_list.html',{'filter':pet_filter,'dis_filter':dis_filter, 'distance':distance,'owner':owner,'flag':flag})
+        dis_filter , distance = get_locations_nearby_coords(owner.address, flag)
+        filtered = list(set(pet_filter.qs).intersection(dis_filter))
+        return render(request,'matching/pet_list.html',{'filter':pet_filter,'dis_filter':dis_filter, 'distance':distance,'owner':owner,'flag':flag, 'filtered':filtered})
     return render(request,'matching/pet_list.html',{'filter':pet_filter,'owner':owner})
 
 

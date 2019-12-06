@@ -41,11 +41,8 @@
 </br>
 
 <div class="container">
-  <form action="" method="get" >
-    {{ filter.form }}
-    <input type="submit" name="search" value="search"/>
-  </form>
   <form method="get" action="">
+    {{ filter.form }}
     내 주변 <input name="distance_search" placeholder="" type="number" > km 까지
     <span> <button type="submit"> search </button>
   </form>
@@ -56,8 +53,8 @@
   <div class="row shuffle-wrapper portfolio-gallery">
 	      
   {% if flag %}
-    {% if dis_filter %}
-      {% for pet in dis_filter %}
+    {% if filtered %}
+      {% for pet in filtered %}
         <br />
         {% if pet.owner == owner %}
         {% else %}
