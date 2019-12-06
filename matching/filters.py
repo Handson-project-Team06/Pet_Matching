@@ -18,7 +18,7 @@ class PetFilter(FilterSet):
     animal = django_filters.ChoiceFilter(choices=ANIMAL_CHOICES,empty_label=ugettext_lazy(u'Any'))
     class Meta:
         model = Pet
-        fields = ['breed', 'gender','animal']
+        fields = ['animal', 'gender','breed']
 
 
 
