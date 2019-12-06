@@ -9,7 +9,11 @@ class PetCreationForm(forms.ModelForm):
             ,'address','introduction'
         )
         
-        widgets = { 'introduction': forms.TextInput(attrs={'size': 80})}
+        widgets = { 'introduction': forms.TextInput(attrs={'size': 80})\
+             ,'address': forms.TextInput(attrs={'size': 50})
+        
+        
+         }
 
     def __init__(self, user, lat, lon, *args, **kwargs):
         super(PetCreationForm, self).__init__(*args, **kwargs)
