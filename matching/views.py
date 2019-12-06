@@ -13,7 +13,7 @@ def pet_list_function(request):
     pet_list = Pet.objects.all()
     pet_filter = PetFilter(request.GET,queryset=pet_list)
     owner=request.user
-    if 'distance_search' in request.GET:
+    if 'distance_search' in request.GET and request.GET['distance_search'] :
         max_distance = int(request.GET['distance_search'])
         dis_filter , distance = get_locations_nearby_coords(owner.address, max_distance)
         flag=int(request.GET['distance_search'])
