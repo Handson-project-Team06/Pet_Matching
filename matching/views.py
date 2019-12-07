@@ -114,6 +114,12 @@ class MyPetListView(generic.ListView):
         return queryset.filter(owner=self.request.user)
 
 
+#내 반려동물 상세페이지
+class MyPetDetailView(generic.DetailView):
+        template_name = 'matching/my_pet_detail.html'
+        model = Pet
+
+
 class PetDeleteView(generic.DeleteView):
     model = Pet
     success_url = reverse_lazy('matching:my_pet_list')
