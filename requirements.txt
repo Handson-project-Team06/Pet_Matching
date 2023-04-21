@@ -9,4 +9,4 @@ pytz==2019.3
 regex==2019.11.1
 simplejson==3.17.0
 six==1.13.0
-sqlparse==0.3.0
+sqlparse==0.4.4
